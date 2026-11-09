@@ -36,6 +36,8 @@
   --header-bg:rgba(255,241,230,.86);
   --bar:#b8262c; --bar-fg:#fff3e8; --bar-link:#ffd98a;
   --map-yard:#e1ead6;
+  --beans-op:.16;
+  --roast-1:#8c9a5a; --roast-2:#c08a52; --roast-3:#8a4f26; --roast-4:#4a2414;
   --status-dot:#15803d;
   --grain-blend:multiply; --grain-op:.08;
   --hero-scrim:linear-gradient(90deg,rgba(255,241,230,.94) 0%,rgba(255,241,230,.74) 42%,rgba(255,241,230,.06) 75%),linear-gradient(0deg,rgba(255,241,230,.55),transparent 45%);
@@ -68,6 +70,8 @@
   --header-bg:rgba(10,9,8,.86);
   --bar:#000000; --bar-fg:#f4ecdc; --bar-link:#ebcb6e;
   --map-yard:#1d2419;
+  --beans-op:.2;
+  --roast-1:#8fa868; --roast-2:#e0b878; --roast-3:#b8834a; --roast-4:#d4af37;
   --status-dot:#22c55e;
   --grain-blend:screen; --grain-op:.06;
   --hero-scrim:linear-gradient(90deg,rgba(8,7,6,.88) 0%,rgba(8,7,6,.62) 42%,rgba(8,7,6,.08) 75%),linear-gradient(0deg,rgba(8,7,6,.6),transparent 45%);
@@ -136,6 +140,18 @@ p{margin:0}
 [data-fade]{opacity:0;filter:blur(8px);transform:translateY(14px);transition:opacity .7s ease,filter .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
 [data-fade].in{opacity:1;filter:none;transform:none}
 
+/* ============ Фон: кофейные зёрна разной обжарки, полупрозрачно ============ */
+.beans-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--beans-op)}
+.beans-bg svg{width:100%;height:100%;display:block}
+.beans-bg .r1{color:var(--roast-1)} /* зелёное зерно */
+.beans-bg .r2{color:var(--roast-2)} /* светлая обжарка */
+.beans-bg .r3{color:var(--roast-3)} /* средняя */
+.beans-bg .r4{color:var(--roast-4)} /* тёмная */
+.beans-bg .bl{animation:bean-float 14s ease-in-out infinite alternate}
+.beans-bg .bl2{animation-duration:19s;animation-delay:-6s}
+.beans-bg .bl3{animation-duration:23s;animation-delay:-11s;animation-direction:alternate-reverse}
+@keyframes bean-float{from{transform:translate3d(0,0,0)}to{transform:translate3d(10px,-24px,0)}}
+
 /* ============ Header ============ */
 .header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
 .header.scrolled{border-color:var(--line)}
@@ -191,7 +207,7 @@ a.chip:hover{border-color:var(--terra)}
 :root:not([data-theme="dark"]) .hero .note{background:var(--glass);padding:10px 14px 6px;border-radius:var(--radius-sm);backdrop-filter:blur(6px)}
 
 /* Magic UI — marquee */
-.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:28px;background:var(--milk-2);
+.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:28px;background:color-mix(in srgb,var(--milk-2) 80%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marquee-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
@@ -222,7 +238,7 @@ section{padding:clamp(72px,10vw,120px) 0}
 .feature small{color:var(--muted);font-size:14px}
 
 /* Menu */
-#menu{background:var(--cream);border-block:1px solid var(--line)}
+#menu{background:color-mix(in srgb,var(--cream) 72%,transparent);border-block:1px solid var(--line)}
 .tabs{display:inline-flex;flex-wrap:wrap;gap:8px}
 .tab{position:relative;isolation:isolate;height:44px;padding:0 16px;border-radius:9999px;border:1px solid var(--line);background:var(--cream);font:600 14px/1 var(--font-body);color:var(--coffee);cursor:pointer;transition:all .15s}
 .tab:hover{border-color:color-mix(in srgb,var(--coffee) 40%,transparent)}
@@ -306,7 +322,7 @@ section{padding:clamp(72px,10vw,120px) 0}
 @keyframes steam{0%,100%{opacity:.25;transform:translateY(2px)}50%{opacity:1;transform:translateY(-2px)}}
 
 /* Footer */
-footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;background:var(--panel)}
+footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;background:color-mix(in srgb,var(--panel) 80%,transparent)}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px}
 .foot h4{margin:0 0 12px;font:700 12px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--terra-h)}
 .foot a{text-decoration:none;color:var(--coffee)}
@@ -364,6 +380,14 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 </style>
 </head>
 <body>
+<div class="beans-bg" aria-hidden="true"><svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs><symbol id="bean" viewBox="0 0 40 56" overflow="visible">
+    <ellipse cx="20" cy="28" rx="16" ry="24" fill="currentColor"/>
+    <ellipse cx="14" cy="20" rx="5" ry="10" fill="#fff" opacity=".14"/>
+    <path d="M20 6C11 17 29 37 20 50" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol></defs>
+  <g class="bl bl1"><use href="#bean" width="40" height="56" class="r1" transform="translate(513 90) rotate(207) scale(0.82) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(755 88) rotate(216) scale(0.73) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(65 226) rotate(256) scale(1.20) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(279 188) rotate(345) scale(0.57) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(702 221) rotate(246) scale(1.11) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(885 200) rotate(112) scale(1.16) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(1086 249) rotate(4) scale(0.69) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(1207 336) rotate(15) scale(1.12) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(62 675) rotate(256) scale(0.86) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(680 653) rotate(128) scale(0.99) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(667 858) rotate(255) scale(0.84) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(1147 797) rotate(187) scale(1.16) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(1380 819) rotate(311) scale(0.87) translate(-20 -28)"/></g><g class="bl bl2"><use href="#bean" width="40" height="56" class="r2" transform="translate(97 88) rotate(5) scale(0.66) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(1409 104) rotate(158) scale(0.86) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(553 225) rotate(26) scale(1.03) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(1158 214) rotate(79) scale(0.99) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(1379 207) rotate(269) scale(0.64) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(64 390) rotate(83) scale(0.91) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(190 361) rotate(327) scale(1.24) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(904 410) rotate(20) scale(0.76) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(1364 398) rotate(50) scale(0.85) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(422 517) rotate(208) scale(0.75) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(873 499) rotate(318) scale(0.72) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(1183 504) rotate(114) scale(0.81) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(999 686) rotate(311) scale(1.22) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(1217 662) rotate(252) scale(1.16) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(121 837) rotate(183) scale(1.14) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(279 810) rotate(12) scale(1.25) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(526 801) rotate(97) scale(1.20) translate(-20 -28)"/></g><g class="bl bl3"><use href="#bean" width="40" height="56" class="r1" transform="translate(274 90) rotate(285) scale(1.03) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(453 64) rotate(107) scale(0.82) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(932 78) rotate(285) scale(1.26) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(1046 76) rotate(311) scale(0.62) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(1197 66) rotate(42) scale(0.57) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(430 193) rotate(91) scale(0.99) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(369 358) rotate(349) scale(0.75) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(694 346) rotate(241) scale(0.71) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(1084 398) rotate(177) scale(1.01) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(55 548) rotate(251) scale(1.10) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r4" transform="translate(741 543) rotate(92) scale(0.80) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(1398 540) rotate(264) scale(0.79) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(271 639) rotate(208) scale(1.17) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(388 689) rotate(54) scale(1.08) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(544 694) rotate(255) scale(0.81) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(865 668) rotate(144) scale(1.05) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r2" transform="translate(1325 698) rotate(56) scale(1.22) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r3" transform="translate(883 837) rotate(258) scale(1.19) translate(-20 -28)"/><use href="#bean" width="40" height="56" class="r1" transform="translate(1024 852) rotate(264) scale(1.23) translate(-20 -28)"/></g>
+</svg></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H16a3.5 3.5 0 0 0 0-7H8a3.5 3.5 0 0 1 0-7h7.5"/></symbol>
