@@ -311,6 +311,7 @@ section{padding:clamp(72px,10vw,120px) 0}
 .perks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
 .perks .badge{background:var(--sage-soft);color:var(--sage)}
 .visit-card .btn{width:100%}
+.visit-actions{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
 .map{padding:0;background:var(--milk-2);color:var(--coffee);min-height:420px;display:flex;flex-direction:column}
 .map svg{width:100%;flex:1;min-height:300px;display:block}
 .map .legend{margin:0 16px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;background:color-mix(in srgb,var(--cream) 94%,transparent);border:1px solid var(--line);padding:12px 14px;border-radius:var(--radius-sm);font-size:14px;font-weight:600}
@@ -378,6 +379,8 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   .mcta{display:flex;gap:10px;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;padding:8px;border-radius:9999px;background:color-mix(in srgb,var(--cream) 94%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:var(--shadow-lift);transform:translateY(140%);transition:transform .35s}
   .mcta.show{transform:none}
   .mcta .btn{flex:1;--h:48px;padding:0 14px}
+  .mcta .mcta-call{flex:0 0 48px;padding:0}
+  .visit-actions{grid-template-columns:1fr}
   body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){
@@ -464,6 +467,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <div class="meta">
           <span class="chip"><svg><use href="#i-clock"/></svg>Ежедневно, 8:00–21:00</span>
           <a class="chip" href="#visit"><svg><use href="#i-pin"/></svg>ул. Лесная, 12</a>
+          <a class="chip" href="tel:+79000001212"><svg><use href="#i-phone"/></svg>+7 900 000-12-12</a>
         </div>
       </div>
       <div class="note" aria-hidden="true">булочки<br>уже в печи
@@ -586,13 +590,14 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
           <li><span class="ico"><svg><use href="#i-clock"/></svg></span><div><small>Часы работы</small><b>Ежедневно, 8:00–21:00</b></div></li>
           <li><span class="ico"><svg><use href="#i-metro"/></svg></span><div><small>Ориентир</small><b>2 минуты от метро «Соседская»</b></div></li>
           <li><span class="ico"><svg><use href="#i-door"/></svg></span><div><small>Вход</small><b>Со двора, через арку</b></div></li>
+          <li><span class="ico"><svg><use href="#i-phone"/></svg></span><div><small>Телефон</small><b><a href="tel:+79000001212" style="text-decoration:none">+7 900 000-12-12</a></b></div></li>
         </ul>
         <div class="perks">
           <span class="badge"><svg width="14" height="14"><use href="#i-paw"/></svg>Можно с собакой</span>
           <span class="badge"><svg width="14" height="14"><use href="#i-cup"/></svg>Летняя терраса</span>
           <span class="badge">Wi-Fi и розетки</span>
         </div>
-        <a class="btn btn-primary route-link" href="https://yandex.ru/maps/?text=%D1%83%D0%BB.%20%D0%9B%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Построить маршрут</a>
+        <div class="visit-actions"><a class="btn btn-primary route-link" href="https://yandex.ru/maps/?text=%D1%83%D0%BB.%20%D0%9B%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Построить маршрут</a><a class="btn btn-outline" href="tel:+79000001212"><svg><use href="#i-phone"/></svg>Позвонить</a></div>
       </div>
 
       <div class="visit-card map" aria-label="Схема прохода от метро «Соседская» до кофейни">
@@ -634,6 +639,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
     <p data-fade>ул. Лесная, 12 · ежедневно, 8:00–21:00 · вход со двора</p>
     <div class="actions" data-fade>
       <a class="btn btn-primary route-link" href="https://yandex.ru/maps/?text=%D1%83%D0%BB.%20%D0%9B%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Построить маршрут</a>
+      <a class="btn btn-outline" href="tel:+79000001212"><svg><use href="#i-phone"/></svg>Позвонить</a>
       <a class="btn btn-outline" href="#menu">Посмотреть меню</a>
     </div>
   </div>
@@ -655,6 +661,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 <div class="mcta" aria-label="Быстрые действия">
   <a class="btn btn-light" href="#menu">Меню</a>
   <a class="btn btn-primary route-link" href="#visit"><svg><use href="#i-route"/></svg>Маршрут</a>
+  <a class="btn btn-outline mcta-call" href="tel:+79000001212" aria-label="Позвонить: +7 900 000-12-12"><svg><use href="#i-phone"/></svg></a>
 </div>
 
 <script>
