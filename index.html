@@ -210,7 +210,8 @@ a.chip:hover{border-color:var(--terra)}
 .status [data-status]{color:var(--coffee-2)}
 .hero .note{position:absolute;right:clamp(20px,4vw,48px);top:clamp(20px,4vw,40px);font:italic 500 24px/1.1 var(--font-hand);color:var(--terra-h);transform:rotate(4deg);text-align:right}
 .hero .note svg{width:60px;height:40px;margin-left:auto;margin-top:4px;color:var(--terra-h)}
-:root:not([data-theme="dark"]) .hero .note{background:var(--glass);padding:10px 14px 6px;border-radius:var(--radius-sm);backdrop-filter:blur(6px)}
+:root:not([data-theme="dark"]) .hero .note{text-shadow:0 0 6px rgba(255,241,230,.95),0 0 14px rgba(255,241,230,.8)}
+:root:not([data-theme="dark"]) .hero .note svg{filter:drop-shadow(0 0 4px rgba(255,241,230,.95))}
 
 /* Magic UI — marquee */
 .marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:28px;background:color-mix(in srgb,var(--milk-2) 80%,transparent);
