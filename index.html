@@ -194,6 +194,10 @@ p{margin:0}
 .hero h1{color:var(--coffee);font-size:clamp(36px,6vw,64px);line-height:1.08;margin:16px 0 18px}
 /* заголовок: плотные заглавные + каллиграфия */
 .hero h1 .h1-top{display:block;font:800 .6em/1.05 var(--font-body);letter-spacing:.02em;text-transform:uppercase;color:var(--terra-h)}
+/* светлая тема: «Кофе рядом.» — антиква и тёмное золото с переливом (контраст ≥3:1 на персике) */
+:root:not([data-theme="dark"]) .hero h1 .h1-top{font:700 .62em/1.05 var(--font-head);letter-spacing:.05em;
+  background-image:linear-gradient(100deg,#8f6210 0%,#b07d1e 30%,#9a6b12 55%,#b07d1e 80%,#8f6210 100%);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:gold-shine 6s linear infinite}
 .hero h1 em{display:block;margin-top:.12em;font:400 1.14em/1.02 "Marck Script","Playfair Display",cursive;font-style:normal;letter-spacing:0;color:var(--coffee)}
 .hero .lead{font-size:clamp(16px,1.6vw,18px);font-weight:600;line-height:1.625;max-width:520px;color:var(--coffee-2)}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
