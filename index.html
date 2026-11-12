@@ -262,14 +262,15 @@ a.chip:hover{border-color:var(--terra)}
 :root:not([data-theme="dark"]) .hero .note{text-shadow:0 0 6px rgba(255,241,230,.95),0 0 14px rgba(255,241,230,.8)}
 :root:not([data-theme="dark"]) .hero .note svg{filter:drop-shadow(0 0 4px rgba(255,241,230,.95))}
 
-/* Magic UI — marquee */
-.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:28px;background:color-mix(in srgb,var(--milk-2) 80%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.marquee-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-.marquee span{display:inline-flex;align-items:center;gap:22px;padding:16px 11px;font:italic 500 22px/1 var(--font-head);color:var(--coffee);white-space:nowrap}
-.marquee span::after{content:"✻";color:var(--terra);font-size:16px}
-@keyframes marquee{to{transform:translateX(-50%)}}
+/* Premium static signature strip */
+.signature-strip{margin-top:28px;padding:22px 0;border-block:1px solid var(--line);background:color-mix(in srgb,var(--milk-2) 72%,transparent)}
+.signature-inner{display:grid;grid-template-columns:1.2fr repeat(3,1fr);align-items:center;gap:22px}
+.signature-lead{font:500 clamp(19px,2.2vw,27px)/1.25 var(--font-head);color:var(--coffee);letter-spacing:-.015em}
+.signature-lead em{font-style:italic;color:var(--terra-h)}
+.signature-item{display:flex;align-items:center;gap:10px;color:var(--coffee-2);font-size:13px;font-weight:600;line-height:1.4}
+.signature-mark{display:grid;place-items:center;flex:none;width:30px;height:30px;border:1px solid color-mix(in srgb,var(--terra) 45%,transparent);border-radius:50%;color:var(--terra-h);font:500 15px/1 var(--font-head)}
+@media(max-width:760px){.signature-inner{grid-template-columns:1fr 1fr;gap:16px}.signature-lead{grid-column:1/-1;padding-bottom:4px}.signature-item{font-size:12px}}
+@media(max-width:380px){.signature-inner{grid-template-columns:1fr}.signature-lead{grid-column:auto}}
 
 /* ============ Sections ============ */
 section{padding:clamp(72px,10vw,120px) 0}
@@ -506,16 +507,16 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   <div class="container">
     <div class="hero-frame grain" id="hero" role="img" aria-label="Чашка капучино на столике у окна в кофейне «Пенка»">
       <div class="hero-content">
-        <span class="chip status" data-status-chip><span class="pulse"></span><span data-status>Ежедневно 8:00–21:00</span></span>
+        <span class="chip"><span class="signature-mark" aria-hidden="true">✦</span>Дизайн-концепция</span>
         <h1><span class="h1-top">Концепт сайта кофейни</span><em>«Пенка» — кофе и уют</em></h1>
-        <p class="lead">Варим спешелти, печём булочки каждое утро и всегда рады соседям.</p>
+        <p class="lead">Визуальная история о кофе, выпечке и атмосфере места, в которое хочется возвращаться.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#menu">Посмотреть меню <svg><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-light" href="#visit"><svg><use href="#i-pin"/></svg>Как нас найти</a>
+          <a class="btn btn-light" href="#about">О проекте</a>
         </div>
         <div class="meta">
-          <span class="chip"><svg><use href="#i-clock"/></svg>Ежедневно, 8:00–21:00</span>
-          <span class="chip">Дизайн-концепция</span><span class="chip">Учебный проект</span>
+          <span class="chip">Премиальная визуальная система</span>
+          <span class="chip">Адаптивный интерфейс</span>
         </div>
       </div>
       <div class="note" aria-hidden="true">булочки<br>уже в печи
@@ -523,10 +524,12 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       </div>
     </div>
   </div>
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Спешелти от локальных обжарщиков</span><span>Булочки каждое утро</span><span>Можно с ноутбуком</span><span>Можно с собакой</span><span>Фильтр дня</span><span>Вход со двора</span>
-      <span>Спешелти от локальных обжарщиков</span><span>Булочки каждое утро</span><span>Можно с ноутбуком</span><span>Можно с собакой</span><span>Фильтр дня</span><span>Вход со двора</span>
+  <div class="signature-strip" aria-label="Особенности дизайн-концепции">
+    <div class="container signature-inner">
+      <p class="signature-lead">Пространство для <em>кофейной эстетики.</em></p>
+      <div class="signature-item"><span class="signature-mark" aria-hidden="true">01</span><span>Выразительная визуальная система</span></div>
+      <div class="signature-item"><span class="signature-mark" aria-hidden="true">02</span><span>Меню и галерея в едином стиле</span></div>
+      <div class="signature-item"><span class="signature-mark" aria-hidden="true">03</span><span>Адаптивный интерфейс</span></div>
     </div>
   </div>
 </section>
