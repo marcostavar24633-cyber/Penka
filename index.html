@@ -4,7 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Пенка — кофейня на углу</title>
-<meta name="description" content="«Пенка» — небольшая кофейня на углу: спешелти-кофе, выпечка каждое утро. Ежедневно 8:00–21:00, ул. Лесная, 12.">
+<meta name="description" content="Концепт-сайт кофейни «Пенка»: спешелти-кофе, свежая выпечка, меню и атмосфера уютного места на углу.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#fff1e6">
+<link rel="canonical" href="https://marcostavar24633-cyber.github.io/Penka/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Пенка">
+<meta property="og:title" content="Пенка — кофейня на углу">
+<meta property="og:description" content="Концепт-сайт уютной кофейни: спешелти-кофе, свежая выпечка и меню.">
+<meta property="og:url" content="https://marcostavar24633-cyber.github.io/Penka/">
+<meta property="og:image" content="https://marcostavar24633-cyber.github.io/Penka/img/penka-hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Пенка — кофейня на углу">
+<meta name="twitter:description" content="Концепт-сайт уютной кофейни: спешелти-кофе, свежая выпечка и меню.">
+<meta name="twitter:image" content="https://marcostavar24633-cyber.github.io/Penka/img/penka-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Пенка — кофейня на углу",
+  "inLanguage": "ru-RU",
+  "url": "https://marcostavar24633-cyber.github.io/Penka/"
+}
+</script>
 <script>try{var t=localStorage.getItem('penka-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -651,7 +674,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
     <div class="foot">
       <div><a class="logo" href="#top"><svg><use href="#logo-cup"/></svg>Пенка</a><p style="margin-top:12px;color:var(--muted);max-width:280px">Кофейня на углу. Спешелти, выпечка и место, где хорошо.</p></div>
       <div><h4>Адрес</h4><ul><li>ул. Лесная, 12</li><li>м. «Соседская», вход со двора</li><li>Ежедневно, 8:00–21:00</li></ul></div>
-      <div><h4>Связь</h4><ul><li><a href="tel:+79000001212">+7 900 000-12-12</a></li><li><a href="#">Telegram — новости и сезонное меню</a></li><li><a href="#">ВКонтакте</a></li></ul></div>
+      <div><h4>Связь</h4><ul><li><a href="tel:+79000001212">+7 900 000-12-12</a></li><li><span>Telegram — ссылка будет добавлена</span></li><li><span>ВКонтакте — ссылка будет добавлена</span></li></ul></div>
       <div><h4>Навигация</h4><ul><li><a href="#menu">Меню</a></li><li><a href="#about">О кофейне</a></li><li><a href="#gallery">Атмосфера</a></li><li><a href="#visit">Как нас найти</a></li></ul></div>
     </div>
     <div class="disclaimer"><span>Концепт-сайт: кофейня «Пенка» вымышленная, меню, цены, адрес и телефон придуманы. Фотографии сгенерированы ИИ.</span><span>© 2026 Пенка</span></div>
@@ -701,11 +724,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   sheet.addEventListener('click', e => { if (e.target.closest('a')) setSheet(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape') setSheet(false); });
 
-  // Live open/closed status (8:00–21:00, local time of the visitor)
-  const now = new Date(), m = now.getHours() * 60 + now.getMinutes(), open = m >= 480 && m < 1260;
-  const txt = open ? (1260 - m <= 60 ? `Открыто ещё ${1260 - m} мин · до 21:00` : 'Открыто сейчас · до 21:00') : 'Закрыто · откроемся в 8:00';
-  document.querySelectorAll('[data-status]').forEach(el => el.textContent = txt);
-  document.querySelectorAll('[data-status-chip]').forEach(el => el.classList.toggle('is-closed', !open));
+  // Демонстрационный режим: показываем расписание без ложного статуса
+  // «открыто сейчас», поскольку часовой пояс и фактический график не заданы.
+  document.querySelectorAll('[data-status]').forEach(el => el.textContent = 'Ежедневно · 8:00–21:00');
 
   // Tabs (shadcn-like, keyboard accessible)
   const tabs = [...document.querySelectorAll('[role=tab]')];
