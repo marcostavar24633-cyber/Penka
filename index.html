@@ -7,6 +7,7 @@
 <meta name="description" content="Демонстрационный проект сайта кофейни «Пенка»: концепция дизайна, меню кофе и выпечки, галерея и адаптивная версия для портфолио.">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#fff1e6">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://marcostavar24633-cyber.github.io/Penka/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -74,13 +75,13 @@
   --header-bg:rgba(255,241,230,.86);
   --bar:#b8262c; --bar-fg:#fff3e8; --bar-link:#ffd98a;
   --map-yard:#e1ead6;
-  --beans-op:.16;
+  --beans-op:.09;
   --roast-1:#8c9a5a; --roast-2:#c08a52; --roast-3:#8a4f26; --roast-4:#4a2414;
   --status-dot:#15803d;
   --grain-blend:multiply; --grain-op:.08;
   --hero-scrim:linear-gradient(90deg,rgba(255,241,230,.94) 0%,rgba(255,241,230,.74) 42%,rgba(255,241,230,.06) 75%),linear-gradient(0deg,rgba(255,241,230,.55),transparent 45%);
   --hero-scrim-m:linear-gradient(0deg,rgba(255,241,230,.96) 0%,rgba(255,241,230,.78) 48%,rgba(255,241,230,.1) 80%);
-  --hero-glow:rgba(209,154,42,.22);
+  --hero-glow:rgba(209,154,42,.12);
   --gold-fill:linear-gradient(135deg,#ffd9a0 0%,#e8b04a 38%,#d19a2a 62%,#f3c977 100%);
   --gold-text:linear-gradient(100deg,#a3161f 0%,#d64535 25%,#d19a2a 55%,#c0392b 80%,#a3161f 100%);
   --radius:1.25rem;    /* radius-2xl */
@@ -108,13 +109,13 @@
   --header-bg:rgba(10,9,8,.86);
   --bar:#000000; --bar-fg:#f4ecdc; --bar-link:#ebcb6e;
   --map-yard:#1d2419;
-  --beans-op:.2;
+  --beans-op:.12;
   --roast-1:#8fa868; --roast-2:#e0b878; --roast-3:#b8834a; --roast-4:#d4af37;
   --status-dot:#22c55e;
   --grain-blend:screen; --grain-op:.06;
   --hero-scrim:linear-gradient(90deg,rgba(8,7,6,.88) 0%,rgba(8,7,6,.62) 42%,rgba(8,7,6,.08) 75%),linear-gradient(0deg,rgba(8,7,6,.6),transparent 45%);
   --hero-scrim-m:linear-gradient(0deg,rgba(8,7,6,.94) 0%,rgba(8,7,6,.72) 48%,rgba(8,7,6,.1) 80%);
-  --hero-glow:rgba(212,175,55,.16);
+  --hero-glow:rgba(212,175,55,.10);
   --gold-fill:linear-gradient(135deg,#f7e2a1 0%,#d4af37 38%,#b38a24 62%,#ecd083 100%);
   --gold-text:linear-gradient(100deg,#b8902b 0%,#f7e2a1 30%,#d4af37 55%,#f3d98a 80%,#b8902b 100%);
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -10px rgba(0,0,0,.6);
@@ -134,7 +135,7 @@ p{margin:0}
 .container{width:min(var(--container),100% - 32px);margin-inline:auto}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid var(--terra-h);outline-offset:3px;border-radius:8px}
-.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:calc(var(--grain-op) * .65);mix-blend-mode:var(--grain-blend);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ============ shadcn-style primitives ============ */
@@ -159,10 +160,10 @@ p{margin:0}
   background:conic-gradient(from var(--run-a),transparent 0deg 250deg,#b38a24 285deg,#f7e2a1 320deg,#d4af37 340deg,transparent 360deg);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease}
 .btn::after{inset:-3.5px}
-.btn:hover::after,.btn:focus-visible::after,.btn:active::after,.tab:hover::after,.tab:focus-visible::after,.dish:hover::after,.feature:hover::after{opacity:1;animation:run-border 2.4s linear infinite}
+.btn:hover::after,.btn:focus-visible::after,.btn:active::after,.tab:hover::after,.tab:focus-visible::after,.dish:hover::after,.feature:hover::after{opacity:1;animation:run-border 4.8s linear infinite}
 /* золотой текст */
 .text-gold{background-image:var(--gold-text);background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;animation:gold-shine 6s linear infinite;padding-right:.06em}
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:gold-shine 12s linear infinite;padding-right:.06em}
 @keyframes gold-shine{to{background-position:200% center}}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9999px;font:600 13px/1 var(--font-body);background:var(--sage-soft);color:var(--sage)}
 .card{position:relative;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -190,6 +191,16 @@ p{margin:0}
 .beans-bg .bl3{animation-duration:23s;animation-delay:-11s;animation-direction:alternate-reverse}
 @keyframes bean-float{from{transform:translate3d(0,0,0)}to{transform:translate3d(10px,-24px,0)}}
 
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.portfolio-card{padding:clamp(22px,3vw,32px)}
+.portfolio-card h3{margin:0 0 12px}
+.portfolio-card p{color:var(--coffee-2)}
+.portfolio-note{margin-top:22px;padding:16px 20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--muted);font-size:14px}
+@media(max-width:760px){.portfolio-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  [data-fade]{opacity:1;filter:none;transform:none}
+}
 /* ============ Header ============ */
 .header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
 .header.scrolled{border-color:var(--line)}
@@ -618,68 +629,25 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 <section id="visit" class="grain">
   <div class="container">
     <div class="section-head">
-      <div><span class="eyebrow">демонстрационный раздел</span><h2>Пример контактного блока</h2></div>
+      <div><span class="eyebrow">о проекте</span><h2>Дизайн-концепция «Пенка»</h2></div>
+      <p>Учебный проект для демонстрации возможностей современного сайта кофейни.</p>
     </div>
-    <div class="visit-grid">
-      <div class="visit-card beam">
-        <span class="chip status" data-status-chip style="background:rgba(255,248,239,.08)"><span class="pulse"></span><span data-status>Ежедневно 8:00–21:00</span></span>
-        <ul class="facts">
-          <li><span class="ico"><svg><use href="#i-pin"/></svg></span><div><small>Адрес</small><b>ул. Лесная, 12</b></div></li>
-          <li><span class="ico"><svg><use href="#i-clock"/></svg></span><div><small>Часы работы</small><b>Ежедневно, 8:00–21:00</b></div></li>
-          <li><span class="ico"><svg><use href="#i-metro"/></svg></span><div><small>Ориентир</small><b>2 минуты от метро «Соседская»</b></div></li>
-          <li><span class="ico"><svg><use href="#i-door"/></svg></span><div><small>Вход</small><b>Со двора, через арку</b></div></li>
-          <li><span class="ico"><svg><use href="#i-phone"/></svg></span><div><small>Телефон</small><b><a href="tel:+79000001212" style="text-decoration:none">+7 900 000-12-12</a></b></div></li>
-        </ul>
-        <div class="perks">
-          <span class="badge"><svg width="14" height="14"><use href="#i-paw"/></svg>Можно с собакой</span>
-          <span class="badge"><svg width="14" height="14"><use href="#i-cup"/></svg>Летняя терраса</span>
-          <span class="badge">Wi-Fi и розетки</span>
-        </div>
-        <div class="visit-actions"><a class="btn btn-primary route-link" href="https://yandex.ru/maps/?text=%D1%83%D0%BB.%20%D0%9B%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Построить маршрут</a><a class="btn btn-outline" href="tel:+79000001212"><svg><use href="#i-phone"/></svg>Позвонить</a></div>
-      </div>
-
-      <div class="visit-card map" aria-label="Схема прохода от метро «Соседская» до кофейни">
-        <svg viewBox="0 120 600 300" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="map-t">
-          <title id="map-t">Схема: выход из метро «Соседская», налево по ул. Лесной, через арку во двор — кофейня «Пенка»</title>
-          <rect width="600" height="440" style="fill:var(--milk-2)"/>
-          <g style="fill:var(--surface-2)"><rect x="30" y="30" width="170" height="120" rx="10"/><rect x="230" y="30" width="150" height="120" rx="10"/><rect x="410" y="30" width="160" height="120" rx="10"/>
-          <rect x="30" y="250" width="170" height="160" rx="10"/><rect x="410" y="250" width="160" height="160" rx="10"/></g>
-          <rect x="230" y="250" width="150" height="160" rx="10" style="fill:var(--map-yard)"/>
-          <g style="fill:var(--sage)" opacity=".35"><circle cx="262" cy="290" r="10"/><circle cx="290" cy="372" r="12"/><circle cx="350" cy="300" r="9"/></g>
-          <text x="245" y="400" text-anchor="middle" font-family="Manrope,sans-serif" font-size="13" style="fill:var(--sage)" font-weight="600">двор</text>
-          <rect x="0" y="170" width="600" height="60" style="fill:var(--cream)"/>
-          <text x="520" y="205" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" style="fill:var(--muted)" font-weight="600">ул. Лесная</text>
-          <path d="M92 196 H300 V232" style="stroke:var(--terra)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
-          <path d="M300 232 V300" style="stroke:var(--terra)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
-          <rect x="284" y="228" width="32" height="24" rx="6" style="fill:var(--muted)"/>
-          <text x="326" y="250" font-family="Playfair Display,serif" font-style="italic" font-size="19" style="fill:var(--coffee-2)">арка</text>
-          <circle cx="78" cy="196" r="20" style="fill:var(--coffee)"/><path d="M68 204 72 189l6 9 6-9 4 15" style="stroke:var(--milk)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="78" y="164" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" style="fill:var(--coffee)" font-weight="700">м. Соседская</text>
-          <g transform="translate(300 312)"><circle r="30" style="fill:var(--terra)"/><circle r="40" fill="none" style="stroke:var(--terra)" stroke-width="2" opacity=".35"><animate attributeName="r" values="32;48;32" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
-          <path d="M-12 -6h18v6a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z" style="fill:var(--onaccent)"/><path d="M6 -4h2a3.5 3.5 0 0 1 0 7H5" style="stroke:var(--onaccent)" stroke-width="2.2" fill="none"/></g>
-          <text x="352" y="318" font-family="Playfair Display,serif" font-size="26" font-weight="600" style="fill:var(--coffee)">Пенка</text>
-          <text x="190" y="186" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="19" style="fill:var(--terra-h)">~2 мин пешком</text>
-        </svg>
-        <div class="legend"><div>Выход №1 → налево → арка во двор<br><span>Ищите дверь с золотой чашкой</span></div></div>
-      </div>
+    <div class="portfolio-grid">
+      <article class="card portfolio-card"><span class="eyebrow">01 · визуальный стиль</span><h3>Тёплая атмосфера</h3><p>Молочные и кофейные оттенки, мягкие акценты и выразительная типографика создают узнаваемый образ бренда.</p></article>
+      <article class="card portfolio-card"><span class="eyebrow">02 · интерфейс</span><h3>Удобное меню</h3><p>Категории напитков и выпечки, адаптивные карточки и понятная навигация помогают быстро найти нужную информацию.</p></article>
+      <article class="card portfolio-card"><span class="eyebrow">03 · адаптивность</span><h3>Для разных экранов</h3><p>Макет предусматривает мобильную и настольную версии, переключение цветовой темы и доступную навигацию.</p></article>
     </div>
+    <p class="portfolio-note">Это вымышленная кофейня и демонстрационный макет. Адреса, контактов, реальной точки продаж и действующего меню у проекта нет.</p>
   </div>
 </section>
 
 <!-- ============ FINAL ============ -->
 <section class="final">
   <div class="container">
-    <svg class="cup-ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <g class="steam"><path d="M24 8c-3 4 3 6 0 10"/><path d="M32 6c-3 4 3 6 0 10"/><path d="M40 8c-3 4 3 6 0 10"/></g>
-      <path d="M12 26h34v9a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 29h3a6 6 0 0 1 0 12h-4"/><path d="M8 56h44"/>
-    </svg>
-    <h2 data-fade>Будем рады видеть вас <em class="text-gold">сегодня.</em></h2>
-    <p data-fade>ул. Лесная, 12 · ежедневно, 8:00–21:00 · вход со двора</p>
-    <div class="actions" data-fade>
-      <a class="btn btn-primary route-link" href="https://yandex.ru/maps/?text=%D1%83%D0%BB.%20%D0%9B%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Построить маршрут</a>
-      <a class="btn btn-outline" href="tel:+79000001212"><svg><use href="#i-phone"/></svg>Позвонить</a>
-      <a class="btn btn-outline" href="#menu">Посмотреть меню</a>
-    </div>
+    <svg class="cup-ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 26h34v9a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 29h3a6 6 0 0 1 0 12h-4"/><path d="M8 56h44"/></svg>
+    <h2 data-fade>Пенка — <em class="text-gold">концепция</em> кофейни.</h2>
+    <p data-fade>Демонстрационный веб-проект для портфолио.</p>
+    <div class="actions" data-fade><a class="btn btn-primary" href="#menu">Посмотреть меню-концепцию</a><a class="btn btn-outline" href="#about">О проекте</a></div>
   </div>
 </section>
 </main>
@@ -687,19 +655,17 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 <footer>
   <div class="container">
     <div class="foot">
-      <div><a class="logo" href="#top"><svg><use href="#logo-cup"/></svg>Пенка</a><p style="margin-top:12px;color:var(--muted);max-width:280px">Кофейня на углу. Спешелти, выпечка и место, где хорошо.</p></div>
-      <div><h4>Адрес</h4><ul><li>ул. Лесная, 12</li><li>м. «Соседская», вход со двора</li><li>Ежедневно, 8:00–21:00</li></ul></div>
-      <div><h4>Связь</h4><ul><li><a href="tel:+79000001212">+7 900 000-12-12</a></li><li><span>Telegram — ссылка будет добавлена</span></li><li><span>ВКонтакте — ссылка будет добавлена</span></li></ul></div>
-      <div><h4>Навигация</h4><ul><li><a href="#menu">Меню</a></li><li><a href="#about">О кофейне</a></li><li><a href="#gallery">Атмосфера</a></li><li><a href="#visit">Как нас найти</a></li></ul></div>
+      <div><a class="logo" href="#top"><svg><use href="#logo-cup"/></svg>Пенка</a><p style="margin-top:12px;color:var(--muted);max-width:280px">Демонстрационный проект сайта кофейни.</p></div>
+      <div><h4>Разделы</h4><ul><li><a href="#menu">Меню-концепция</a></li><li><a href="#about">О проекте</a></li><li><a href="#gallery">Атмосфера</a></li></ul></div>
+      <div><h4>Формат</h4><ul><li>Учебный дизайн-проект</li><li>Адаптивный интерфейс</li><li>Без реальных продаж</li></ul></div>
     </div>
-    <div class="disclaimer"><span>Концепт-сайт: кофейня «Пенка» вымышленная, меню, цены, адрес и телефон придуманы. Фотографии сгенерированы ИИ.</span><span>© 2026 Пенка</span></div>
+    <div class="disclaimer"><span>Демонстрационный проект. Кофейня, меню и цены вымышлены. Фотографии сгенерированы ИИ.</span><span>© 2026 Пенка</span></div>
   </div>
 </footer>
 
 <div class="mcta" aria-label="Быстрые действия">
   <a class="btn btn-light" href="#menu">Меню</a>
-  <a class="btn btn-primary route-link" href="#visit"><svg><use href="#i-route"/></svg>Маршрут</a>
-  <a class="btn btn-outline mcta-call" href="tel:+79000001212" aria-label="Позвонить: +7 900 000-12-12"><svg><use href="#i-phone"/></svg></a>
+  <a class="btn btn-primary" href="#about">О проекте</a>
 </div>
 
 <script>
@@ -739,9 +705,6 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   sheet.addEventListener('click', e => { if (e.target.closest('a')) setSheet(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape') setSheet(false); });
 
-  // Демонстрационный режим: показываем расписание без ложного статуса
-  // «открыто сейчас», поскольку часовой пояс и фактический график не заданы.
-  document.querySelectorAll('[data-status]').forEach(el => el.textContent = 'Ежедневно · 8:00–21:00');
 
   // Tabs (shadcn-like, keyboard accessible)
   const tabs = [...document.querySelectorAll('[role=tab]')];
