@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marcostavar24633-cyber.github.io/Penka/sitemap.xml
