@@ -830,6 +830,28 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
  .pillar img,.editorial-image img{transition:none}
 }
 
+
+/* ===== Contrast audit: readable text in both themes ===== */
+:root{
+  --muted:#626b62;
+  --terra-h:#70572f;
+}
+:root[data-theme="dark"]{
+  --muted:#a2aa9d;
+  --terra-h:#e0ca96;
+}
+.eyebrow,.foot h4{color:var(--terra-h)}
+.dish .desc,.feature small,.caption-line span,.editorial-copy p,
+.process-step p,.menu-disclaimer,.gallery-hint,.portfolio-note,
+.disclaimer{color:var(--muted)}
+.price,.price small{color:var(--terra-h)}
+.editorial-index{color:var(--terra-h)}
+.hero-image-caption{color:var(--terra-h)}
+@media(min-width:901px){
+  .hero h1 .h1-top{color:#70572f}
+}
+:root[data-theme="dark"] .hero h1 .h1-top{color:#e3d4b4}
+
 </style>
 </head>
 <body>
