@@ -276,6 +276,7 @@ a.chip:hover{border-color:var(--terra)}
 section{padding:clamp(72px,10vw,120px) 0}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
 .section-head p{max-width:440px;color:var(--muted)}
+.menu-disclaimer{margin-top:10px;color:var(--muted);font-size:13px;max-width:440px}
 
 /* About */
 .about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(32px,6vw,80px);align-items:center}
@@ -481,7 +482,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
     <nav class="nav" aria-label="Основная навигация">
       <a href="#menu">Меню</a>
       <a href="#about">О кофейне</a>
-      <a href="#visit">Как нас найти</a>
+      <a href="#visit">О проекте</a>
     </nav>
     <div class="head-actions">
     <button class="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Сменить тему">
@@ -519,7 +520,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
           <span class="chip">Адаптивный интерфейс</span>
         </div>
       </div>
-      <div class="note" aria-hidden="true">булочки<br>уже в печи
+      <div class="note" aria-hidden="true">кофейная<br>эстетика
         <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M52 4C40 10 26 18 10 32M10 32l2-10M10 32l10-2"/></svg>
       </div>
     </div>
@@ -546,9 +547,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <h2 data-fade>Концепция современного сайта кофейни</h2>
       <p class="big" data-fade>«Пенка» — демонстрационная концепция сайта современной кофейни. В проекте показаны оформление меню, подача кофейных напитков и выпечки, галерея интерьера и адаптивная навигация. Название, ассортимент, цены, адрес и контакты вымышлены: это дизайн-концепт для портфолио, а не действующее заведение.</p>
       <div class="features">
-        <div class="feature card" data-fade style="--d:.05s"><span class="ico"><svg><use href="#i-bean"/></svg></span><div><b>Зерно от локальных обжарщиков</b><small>Свежая обжарка, меняем сорта по сезону</small></div></div>
-        <div class="feature card" data-fade style="--d:.12s"><span class="ico"><svg><use href="#i-bun"/></svg></span><div><b>Выпечка каждый день</b><small>Печём с утра небольшими партиями</small></div></div>
-        <div class="feature card" data-fade style="--d:.19s"><span class="ico"><svg><use href="#i-paw"/></svg></span><div><b>Можно с ноутбуком и собакой</b><small>Розетки у окна, миска воды у входа</small></div></div>
+        <div class="feature card" data-fade style="--d:.05s"><span class="ico"><svg><use href="#i-bean"/></svg></span><div><b>Акцент на кофе</b><small>Визуальный образ современной кофейни</small></div></div>
+        <div class="feature card" data-fade style="--d:.12s"><span class="ico"><svg><use href="#i-bun"/></svg></span><div><b>Выпечка в меню-концепции</b><small>Пример оформления десертов и сезонных позиций</small></div></div>
+        <div class="feature card" data-fade style="--d:.19s"><span class="ico"><svg><use href="#i-paw"/></svg></span><div><b>Пространство для гостей</b><small>Иллюстрация комфортной атмосферы кофейни</small></div></div>
       </div>
     </div>
   </div>
@@ -561,6 +562,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <div>
         <span class="eyebrow" data-fade>пример оформления ассортимента</span>
         <h2 data-fade>Меню</h2>
+        <p class="menu-disclaimer">Позиции и цены условные — они показаны только для демонстрации дизайна.</p>
       </div>
       <div class="tabs" role="tablist" aria-label="Категории меню">
         <button class="tab" role="tab" id="t-coffee" aria-controls="p-coffee" aria-selected="true">Кофе</button>
@@ -576,7 +578,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <div class="body"><div><h3>Фильтр дня</h3><p class="desc">Новый лот каждые пару дней</p></div><span class="price"><small>от</small>190 ₽</span></div></article>
       <div class="card list"><h3>Ещё из кофе</h3>
         <ul><li>Эспрессо<span class="dots"></span>150 ₽</li><li>Американо<span class="dots"></span>от 170 ₽</li><li>Флэт уайт<span class="dots"></span>от 240 ₽</li><li>Латте<span class="dots"></span>от 230 ₽</li><li>Раф с корицей<span class="dots"></span>от 270 ₽</li><li>Доппио<span class="dots"></span>190 ₽</li><li>Кортадо<span class="dots"></span>от 210 ₽</li><li>Мокка<span class="dots"></span>от 290 ₽</li><li>Айс-латте<span class="dots"></span>от 260 ₽</li><li>Эспрессо-тоник<span class="dots"></span>от 280 ₽</li></ul>
-        <p class="hand">альтернативное молоко — без доплаты</p></div>
+        <p class="hand">варианты подачи — часть концепции</p></div>
     </div>
 
     <div class="panel" role="tabpanel" id="p-other" aria-labelledby="t-other">
@@ -586,7 +588,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <ul><li>Какао на молоке<span class="dots"></span>от 230 ₽</li><li>Чай листовой<span class="dots"></span>от 200 ₽</li><li>Имбирный с мёдом<span class="dots"></span>от 220 ₽</li></ul></div>
       <div class="card list"><h3>Холодное</h3>
         <ul><li>Лимонад дня<span class="dots"></span>от 210 ₽</li><li>Холодный чай<span class="dots"></span>от 200 ₽</li><li>Морс<span class="dots"></span>от 180 ₽</li></ul>
-        <p class="hand">летом — всё со льдом</p></div>
+        <p class="hand">летние позиции — пример меню</p></div>
     </div>
 
     <div class="panel" role="tabpanel" id="p-bake" aria-labelledby="t-bake">
@@ -596,11 +598,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <div class="body"><div><h3>Банановый хлеб</h3><p class="desc">Влажный, с хрустящей корочкой</p></div><span class="price">210 ₽</span></div></article>
       <div class="card list"><h3>Ещё на витрине</h3>
         <ul><li>Круассан<span class="dots"></span>190 ₽</li><li>Морковный кекс<span class="dots"></span>220 ₽</li><li>Печенье с шоколадом<span class="dots"></span>140 ₽</li><li>Тост с сыром<span class="dots"></span>260 ₽</li></ul>
-        <p class="hand">после 17:00 — что осталось</p></div>
+        <p class="hand">пример оформления витрины</p></div>
     </div>
 
     <div class="menu-foot">
-      <p>Меню меняется по сезону, а выпечка заканчивается — особенно быстро.</p>
+      <p>Пример структуры меню и сезонных позиций.</p>
       <a class="btn btn-outline" href="#visit">О концепции <svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
