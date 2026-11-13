@@ -50,7 +50,9 @@
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('penka-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ============ Tokens ============ */
 :root{
@@ -387,7 +389,7 @@ section{padding:clamp(72px,10vw,120px) 0}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;background:color-mix(in srgb,var(--panel) 80%,transparent)}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px}
-.foot h4{margin:0 0 12px;font:700 12px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--terra-h)}
+.foot h2{margin:0 0 12px;font:700 12px/1.4 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--terra-h)}
 .foot a{text-decoration:none;color:var(--coffee)}
 .foot a:hover{color:var(--terra-h)}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
@@ -519,7 +521,7 @@ section{padding-block:clamp(76px,9vw,132px)}
 .final .text-gold{background:none;color:var(--graphite)}
 footer{background:var(--graphite);color:rgba(243,241,233,.7);border:0}
 footer .logo,footer .foot a{color:#f3f1e9}
-footer .foot h4{color:#c9b88e}
+footer .foot h2{color:#c9b88e}
 footer .disclaimer{border-color:rgba(243,241,233,.18)}
 .mcta{border-radius:3px}
 .lightbox{width:min(1100px,calc(100% - 28px));max-width:none;max-height:calc(100% - 28px);padding:54px 64px 30px;border:1px solid rgba(255,255,255,.18);background:#111a15;color:#fff;overflow:visible}
@@ -654,7 +656,7 @@ section{padding-block:clamp(82px,9vw,132px)}
 .list{padding:26px 28px}
 .list h3{margin-bottom:16px}
 .list li{padding:12px 0;font-size:12px;letter-spacing:.015em}
-.list .hand{font-size:15px;color:#758574}
+.list .hand{font-size:15px;color:#526653}
 .menu-foot{margin-top:28px;padding-top:20px;border-top:1px solid rgba(24,58,50,.12)}
 .menu-foot p{font-size:13px;color:#68736a}
 #gallery{background:#f5f3ec}
@@ -842,7 +844,7 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   --muted:#a2aa9d;
   --terra-h:#e0ca96;
 }
-.eyebrow,.foot h4{color:var(--terra-h)}
+.eyebrow,.foot h2{color:var(--terra-h)}
 .dish .desc,.feature small,.caption-line span,.editorial-copy p,
 .process-step p,.menu-disclaimer,.gallery-hint,.portfolio-note,
 .disclaimer{color:var(--muted)}
@@ -1153,7 +1155,7 @@ section,.signature-strip,.penka-marquee,footer{min-width:0}
 
 
 <!-- PENKA EDITORIAL TICKER -->
-<div class="penka-marquee" aria-label="Coffee culture, fresh bakery, good mood">
+<div class="penka-marquee">
   <div class="penka-marquee-track" aria-hidden="true">
     <span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span><span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span>
   </div>
@@ -1354,8 +1356,8 @@ section,.signature-strip,.penka-marquee,footer{min-width:0}
   <div class="container">
     <div class="foot">
       <div><a class="logo" href="#top"><svg><use href="#logo-cup"/></svg>Пенка</a><p style="margin-top:12px;color:var(--muted);max-width:280px">Демонстрационный проект сайта кофейни.</p></div>
-      <div><h4>Разделы</h4><ul><li><a href="#menu">Меню-концепция</a></li><li><a href="#about">О проекте</a></li><li><a href="#gallery">Атмосфера</a></li></ul></div>
-      <div><h4>Формат</h4><ul><li>Учебный дизайн-проект</li><li>Адаптивный интерфейс</li><li>Без реальных продаж</li></ul></div>
+      <div><h2>Разделы</h2><ul><li><a href="#menu">Меню-концепция</a></li><li><a href="#about">О проекте</a></li><li><a href="#gallery">Атмосфера</a></li></ul></div>
+      <div><h2>Формат</h2><ul><li>Учебный дизайн-проект</li><li>Адаптивный интерфейс</li><li>Без реальных продаж</li></ul></div>
     </div>
     <div class="disclaimer"><span>Демонстрационный проект. Кофейня, меню и цены вымышлены. Фотографии сгенерированы ИИ.</span><span>© 2026 Пенка</span></div>
   </div>
