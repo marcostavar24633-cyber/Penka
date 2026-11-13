@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#f3f1e9">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://marcostavar24633-cyber.github.io/Penka/">
+<link rel="preload" as="image" href="img/penka-hero.webp" fetchpriority="high">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Пенка">
@@ -47,7 +48,7 @@
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('penka-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <style>
 /* ============ Tokens ============ */
 :root{
@@ -428,7 +429,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   .caption-line{grid-template-columns:1fr;gap:12px}
   .map{min-height:0}.map svg{min-height:280px}
   .foot{grid-template-columns:1fr}
-  .mcta{display:flex;gap:10px;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;padding:8px;border-radius:9999px;background:color-mix(in srgb,var(--cream) 94%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:var(--shadow-lift);transform:translateY(140%);transition:transform .35s}
+  .mcta{display:flex;gap:10px;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;padding:8px;border-radius:9999px;background:color-mix(in srgb,var(--cream) 94%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:var(--shadow-lift);transform:translateY(140%);transition:transform .35s}
   .mcta.show{transform:none}
   .mcta .btn{flex:1;--h:48px;padding:0 14px}
   .mcta .mcta-call{flex:0 0 48px;padding:0}
@@ -552,6 +553,30 @@ footer .disclaimer{border-color:rgba(243,241,233,.18)}
 }
 @media(max-width:420px){.foot{grid-template-columns:1fr}.hero .actions .btn{width:100%}.mcta .btn{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.dish .ph img{transition:none}.lightbox-prev,.lightbox-next{transform:none}}
+
+
+/* PENKA quality pass: responsive fit, typography and keyboard affordances */
+@media (min-width:761px) and (max-width:900px){
+  .header .row{gap:12px}
+  .logo{font-size:27px}
+  .nav{gap:14px}
+  .nav a{font-size:11px;letter-spacing:.08em}
+  .head-actions{gap:8px}
+  .theme-toggle{width:40px;height:40px}
+  .head-actions>.btn{padding-inline:14px;font-size:12px}
+}
+.g:focus-visible{outline:3px solid var(--terra);outline-offset:4px}
+@media (max-width:420px){
+  .hero-frame{min-height:640px}
+  .hero-content{padding-inline:20px}
+  .hero h1{font-size:clamp(44px,13.2vw,56px)}
+  .hero .lead{max-width:30ch}
+  .lightbox-prev{left:2px}
+  .lightbox-next{right:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .gallery:hover .g:not(:hover){filter:none;opacity:1;transform:none}
+}
 
 </style>
 </head>
@@ -745,10 +770,10 @@ footer .disclaimer{border-color:rgba(243,241,233,.18)}
       <p data-fade>Подборка изображений для визуальной концепции кофейни.</p>
     </div>
     <div class="gallery" aria-label="Галерея фотографий ПЕНКА">
-      <figure class="g g1" data-fade tabindex="0"><img src="img/penka-barista.webp" alt="Бариста наливает молоко в капучино" loading="lazy"><figcaption>Стойка бариста</figcaption></figure>
-      <figure class="g g2" data-fade style="--d:.08s" tabindex="0"><img src="img/penka-dog.webp" alt="Гость с ноутбуком, под столом лежит собака" loading="lazy"><figcaption>Гостевая атмосфера</figcaption></figure>
-      <figure class="g g3" data-fade style="--d:.16s" tabindex="0"><img src="img/penka-filter.webp" alt="Фильтр-кофе на деревянном столе" loading="lazy"><figcaption>Фильтр-кофе</figcaption></figure>
-      <figure class="g g4" data-fade style="--d:.24s" tabindex="0"><img src="img/penka-pastry.webp" alt="Витрина с булочками, круассанами и банановым хлебом" loading="lazy" style="object-position:center 60%"><figcaption>Утренняя витрина</figcaption></figure>
+      <figure class="g g1" data-fade role="button" aria-label="Открыть фото: стойка бариста" tabindex="0"><img src="img/penka-barista.webp" alt="Бариста наливает молоко в капучино" loading="lazy"><figcaption>Стойка бариста</figcaption></figure>
+      <figure class="g g2" data-fade role="button" aria-label="Открыть фото: гостевая атмосфера" style="--d:.08s" tabindex="0"><img src="img/penka-dog.webp" alt="Гость с ноутбуком, под столом лежит собака" loading="lazy"><figcaption>Гостевая атмосфера</figcaption></figure>
+      <figure class="g g3" data-fade role="button" aria-label="Открыть фото: фильтр-кофе" style="--d:.16s" tabindex="0"><img src="img/penka-filter.webp" alt="Фильтр-кофе на деревянном столе" loading="lazy"><figcaption>Фильтр-кофе</figcaption></figure>
+      <figure class="g g4" data-fade role="button" aria-label="Открыть фото: утренняя витрина" style="--d:.24s" tabindex="0"><img src="img/penka-pastry.webp" alt="Витрина с булочками, круассанами и банановым хлебом" loading="lazy" style="object-position:center 60%"><figcaption>Утренняя витрина</figcaption></figure>
     </div>
     <p class="gallery-hint">Изображения открываются в полноэкранном просмотре</p>
     <div class="caption-line">
