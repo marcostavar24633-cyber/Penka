@@ -490,17 +490,17 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
     </button>
     <a class="btn btn-primary btn-sm" href="#menu">Смотреть меню</a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="sheet" aria-label="Открыть меню"><svg><use href="#i-menu"/></svg></button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Открыть меню"><svg><use href="#i-menu"/></svg></button>
     </div>
   </div>
 </header>
-<div class="sheet" id="sheet">
+<nav class="sheet" id="sheet" aria-label="Мобильная навигация">
   <a class="link" href="#menu">Меню</a>
   <a class="link" href="#about">О кофейне</a>
   <a class="link" href="#gallery">Атмосфера</a>
   <a class="link" href="#visit">О проекте</a>
   <a class="btn btn-primary" href="#menu">Смотреть меню</a>
-</div>
+</nav>
 
 <main id="main">
 <!-- ============ HERO ============ -->
@@ -571,7 +571,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       </div>
     </div>
 
-    <div class="panel active" role="tabpanel" id="p-coffee" aria-labelledby="t-coffee">
+    <div class="panel active" role="tabpanel" id="p-coffee" aria-labelledby="t-coffee" tabindex="0">
       <article class="card dish"><div class="ph"><img src="img/penka-cappuccino.webp" alt="Капучино с латте-артом" loading="lazy" width="720" height="720"></div>
         <div class="body"><div><h3>Капучино</h3><p class="desc">Двойной эспрессо и бархатное молоко</p></div><span class="price"><small>от</small>220 ₽</span></div></article>
       <article class="card dish"><div class="ph"><img src="img/penka-filter.webp" alt="Фильтр-кофе в стеклянном чайнике" loading="lazy" width="720" height="720"></div>
@@ -581,7 +581,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <p class="hand">варианты подачи — часть концепции</p></div>
     </div>
 
-    <div class="panel" role="tabpanel" id="p-other" aria-labelledby="t-other">
+    <div class="panel" role="tabpanel" id="p-other" aria-labelledby="t-other" tabindex="0">
       <article class="card dish"><div class="ph"><img src="img/penka-matcha.webp" alt="Матча-латте в керамической чашке" loading="lazy" width="720" height="720"></div>
         <div class="body"><div><h3>Матча-латте</h3><p class="desc">Пример описания матча-напитка</p></div><span class="price"><small>от</small>290 ₽</span></div></article>
       <div class="card list"><h3>Тёплое</h3>
@@ -591,7 +591,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <p class="hand">летние позиции — пример меню</p></div>
     </div>
 
-    <div class="panel" role="tabpanel" id="p-bake" aria-labelledby="t-bake">
+    <div class="panel" role="tabpanel" id="p-bake" aria-labelledby="t-bake" tabindex="0">
       <article class="card dish"><div class="ph"><img src="img/penka-bun.webp" alt="Булочка с корицей" loading="lazy" width="720" height="720"></div>
         <div class="body"><div><h3>Булочка с корицей</h3><p class="desc">Пример описания выпечки в меню</p></div><span class="price">180 ₽</span></div></article>
       <article class="card dish"><div class="ph"><img src="img/penka-banana.webp" alt="Банановый хлеб" loading="lazy" width="720" height="720"></div>
@@ -700,14 +700,25 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 
   // Mobile sheet
   const toggle = document.querySelector('.menu-toggle'), sheet = document.getElementById('sheet');
-  const setSheet = open => {
-    sheet.classList.toggle('open', open); toggle.setAttribute('aria-expanded', open);
+  const setSheet = (open, returnFocus = false) => {
+    sheet.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-    toggle.innerHTML = `<svg><use href="#i-${open ? 'close' : 'menu'}"/></svg>`;
+    toggle.innerHTML = `<svg aria-hidden="true"><use href="#i-${open ? 'close' : 'menu'}"/></svg>`;
+    if (!open && returnFocus) toggle.focus();
   };
   toggle.addEventListener('click', () => setSheet(!sheet.classList.contains('open')));
-  sheet.addEventListener('click', e => { if (e.target.closest('a')) setSheet(false); });
-  addEventListener('keydown', e => { if (e.key === 'Escape') setSheet(false); });
+  sheet.addEventListener('click', e => {
+    if (e.target.closest('a')) setSheet(false, true);
+  });
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sheet.classList.contains('open')) setSheet(false, true);
+  });
+  document.addEventListener('click', e => {
+    if (sheet.classList.contains('open') && !sheet.contains(e.target) && !toggle.contains(e.target)) setSheet(false);
+  });
+  const desktopQuery = matchMedia('(min-width: 761px)');
+  desktopQuery.addEventListener?.('change', e => { if (e.matches) setSheet(false); });
 
 
   // Tabs (shadcn-like, keyboard accessible)
@@ -719,8 +730,17 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   tabs.forEach((t, i) => {
     t.addEventListener('click', () => select(t));
     t.addEventListener('keydown', e => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+      let nextIndex = null;
+      if (e.key === 'ArrowRight') nextIndex = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft') nextIndex = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') nextIndex = 0;
+      if (e.key === 'End') nextIndex = tabs.length - 1;
+      if (nextIndex !== null) {
+        e.preventDefault();
+        const nextTab = tabs[nextIndex];
+        select(nextTab);
+        nextTab.focus();
+      }
     });
   });
 
