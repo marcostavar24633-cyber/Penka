@@ -767,6 +767,17 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
 @media(max-width:640px){.hero-image-stack{right:14px;top:20px;transform:none;width:42%;height:220px;opacity:.58}.hero-float-a{width:58%;height:65%}.hero-float-b{width:54%;height:48%;bottom:0}.hero-float-c{width:43%;height:35%;bottom:-2%}.hero-image-caption{display:none}.hero-content{max-width:100%;padding-top:245px}.hero-frame::after{background:linear-gradient(180deg,transparent 0%,rgba(243,241,233,.08) 25%,transparent 58%)}}
 @media(prefers-reduced-motion:reduce){.hero-float img,.hero-frame::after{animation:none!important}}
 
+
+/* Full-bleed hero photograph */
+.hero{padding:0!important}
+.hero>.container{width:100%;max-width:none;margin:0}
+.hero-frame{width:100%;min-height:clamp(620px,88vh,900px);border-radius:0}
+.hero-content{padding-left:clamp(24px,8vw,120px);max-width:780px}
+@media(max-width:640px){
+  .hero-frame{min-height:760px}
+  .hero-content{padding-left:24px;padding-right:24px}
+}
+
 </style>
 </head>
 <body>
