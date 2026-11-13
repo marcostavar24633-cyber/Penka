@@ -976,6 +976,60 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   color:#e5d2a4;
 }
 
+
+/* ===== Mobile layout polish: narrow screens and safe areas ===== */
+html{max-width:100%;overflow-x:clip}
+body{max-width:100%;overflow-x:clip}
+img,svg,video,canvas{max-width:100%}
+.container{min-width:0}
+section,.signature-strip,.penka-marquee,footer{min-width:0}
+@media(max-width:760px){
+  .header{padding-top:env(safe-area-inset-top)}
+  .header .row{min-width:0;gap:10px}
+  .head-actions{gap:7px}
+  .logo{min-width:0;white-space:nowrap}
+  .hero-frame{width:100%;min-width:0}
+  .hero-content{min-width:0}
+  .hero h1{overflow-wrap:anywhere}
+  .hero .lead{max-width:36ch}
+  .signature-inner{min-width:0}
+  .signature-item{min-width:0;align-items:flex-start;letter-spacing:.06em}
+  .signature-mark{flex:0 0 26px;width:26px;height:26px}
+  .section-head>*{min-width:0}
+  .tabs{max-width:100%;scrollbar-width:thin;overscroll-behavior-x:contain}
+  .tab{min-height:44px}
+  .dish,.list,.portfolio-card,.visit-card{min-width:0}
+  .dish .body{min-width:0;gap:10px}
+  .dish .body>div{min-width:0}
+  .dish h3,.dish .desc{overflow-wrap:anywhere}
+  .price{flex:none}
+  .gallery{min-width:0}
+  .g{min-width:0}
+  .g figcaption{max-width:calc(100% - 16px);white-space:normal;line-height:1.35}
+  .caption-line>div{min-width:0}
+  .visit-actions .btn{width:100%;min-width:0}
+  .portfolio-card p,.portfolio-note,.disclaimer{overflow-wrap:anywhere}
+  .foot>div{min-width:0}
+  .mcta{padding:7px;gap:8px;bottom:calc(8px + env(safe-area-inset-bottom))}
+  .mcta .btn{min-width:0;min-height:46px;padding-inline:12px;white-space:nowrap}
+  body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+}
+@media(max-width:380px){
+  .container{width:calc(100% - 24px)}
+  .hero-content{padding-inline:18px}
+  .hero h1{font-size:clamp(42px,12.5vw,50px)}
+  .hero h1 .h1-top{font-size:.23em;letter-spacing:.1em}
+  .signature-inner{gap:12px}
+  .signature-item{font-size:8px;line-height:1.45}
+  .dish .body{align-items:flex-start;flex-direction:column;gap:7px}
+  .dish .desc{display:block}
+  .mcta .btn{font-size:12px;padding-inline:9px}
+  .disclaimer{font-size:11px}
+}
+@media(hover:none){
+  .dish:hover,.portfolio-card:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
