@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Пенка — концепт сайта кофейни | Кофе и выпечка</title>
-<meta name="description" content="Демонстрационный проект сайта кофейни «Пенка»: концепция дизайна, меню кофе и выпечки, галерея и адаптивная версия для портфолио.">
+<title>ПЕНКА — Coffee · Bakery · Design</title>
+<meta name="description" content="ПЕНКА — визуальная концепция современной specialty coffee-культуры: авторский кофе, свежая выпечка и эстетика маленьких удовольствий.">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#f3f1e9">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -12,8 +12,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Пенка">
-<meta property="og:title" content="Пенка — концепт сайта кофейни">
-<meta property="og:description" content="Демонстрационный проект сайта кофейни: дизайн, меню кофе и выпечки, галерея и адаптивная версия.">
+<meta property="og:title" content="ПЕНКА — Coffee · Bakery · Design">
+<meta property="og:description" content="Кофе, свежая выпечка и эстетика маленьких удовольствий. Концептуальный проект для портфолио.">
 <meta property="og:url" content="https://marcostavar24633-cyber.github.io/Penka/">
 <meta property="og:image" content="https://marcostavar24633-cyber.github.io/Penka/img/penka-hero.webp">
 <meta name="twitter:card" content="summary_large_image">
@@ -439,6 +439,120 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   *,*::before,*::after{animation:none!important;transition:none!important}
   [data-fade]{opacity:1;filter:none;transform:none}
 }
+
+/* PENKA editorial art direction */
+:root{--container:1320px;--radius:1.1rem;--radius-lg:1.35rem;--font-head:"Cormorant Garamond","Playfair Display",Georgia,serif}
+html{scroll-padding-top:92px}
+body{letter-spacing:-.012em}
+.header .row{height:82px}
+.logo{font-size:32px;letter-spacing:.035em}
+.logo svg{color:var(--terra)}
+.nav{gap:34px}
+.nav a{font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.hero{padding-top:18px}
+.hero-frame{min-height:min(780px,82vh);border-radius:4px;background-position:center 54%}
+.hero-frame::before{background:linear-gradient(90deg,rgba(13,25,20,.82) 0%,rgba(13,25,20,.48) 48%,rgba(13,25,20,.04) 100%),linear-gradient(0deg,rgba(13,25,20,.35),transparent 45%)}
+.hero-content{max-width:800px;padding:clamp(30px,7vw,92px);color:#fff}
+.hero h1{max-width:760px;color:#fff;font-size:clamp(54px,8vw,112px);line-height:.91;letter-spacing:-.045em;margin:28px 0}
+.hero h1 .h1-top{font:500 .38em/1.2 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:#e3d4b4;filter:none}
+.hero h1 em{font:500 1em/.96 var(--font-head);letter-spacing:-.035em;color:#fff}
+.hero .lead{max-width:450px;color:rgba(255,255,255,.86);font-size:clamp(15px,1.35vw,18px);font-weight:400}
+.hero .chip{background:rgba(18,40,32,.38);border-color:rgba(231,216,183,.38);color:#f3eee2;letter-spacing:.12em;font-size:10px}
+.hero .actions{margin-top:34px}
+.hero .btn-primary{background:#d6c39a;box-shadow:none}
+.hero .btn-light{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.48);color:#fff;backdrop-filter:blur(8px)}
+.hero .meta{display:none}
+.hero .note{color:#e3d4b4}
+.signature-strip{background:var(--graphite);color:#f3f1e9;padding:22px 0}
+.signature-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.signature-lead{font:500 clamp(19px,2.4vw,29px)/1.1 var(--font-head);color:#f3f1e9}
+.signature-lead em{color:#c9b88e}
+.signature-item{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,241,233,.72)}
+.signature-mark{color:#c9b88e}
+section{padding-block:clamp(76px,9vw,132px)}
+#about{background:var(--milk)}
+.about-grid{gap:clamp(36px,7vw,100px);align-items:center}
+.about-photo{border-radius:3px;box-shadow:none}
+.about-photo img{aspect-ratio:4/5;object-fit:cover}
+.about-text h2,.section-head h2{font-size:clamp(42px,5.5vw,72px);letter-spacing:-.035em;line-height:.98}
+.about-text .big{font-size:clamp(16px,1.35vw,19px);line-height:1.85;max-width:590px}
+.feature{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none;padding:15px 0}
+.feature::after{display:none}
+#menu{background:var(--surface-2)}
+.section-head{align-items:end;margin-bottom:38px}
+.section-head>div:first-child{max-width:660px}
+.menu-disclaimer{font-size:12px;color:var(--muted);margin-top:14px}
+.tabs{border:1px solid var(--line);border-radius:999px;padding:5px;background:var(--cream);gap:3px;max-width:100%;flex-wrap:wrap}
+.tab{border-radius:999px;padding:0 18px;font-size:12px;letter-spacing:.04em}
+.tab[aria-selected=true]{background:var(--graphite);color:#fff;box-shadow:none}
+.tab::after{display:none}
+.panel.active{gap:18px}
+.dish,.list{border-radius:3px;box-shadow:none;border:1px solid var(--line);background:var(--cream)}
+.dish::after{display:none}
+.dish .ph{aspect-ratio:1.15/1;overflow:hidden}
+.dish .ph img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.dish:hover .ph img{transform:scale(1.045)}
+.dish .body{padding:22px}
+.dish h3,.list h3{font:500 27px/1.1 var(--font-head);letter-spacing:-.02em}
+.price{color:var(--graphite);font-size:15px}
+.list{padding:25px}
+.list li{font-size:13px;font-weight:500}
+.menu-foot p{font:400 16px/1.5 var(--font-body)}
+#gallery{background:var(--milk)}
+.gallery{grid-template-columns:1.05fr .95fr 1fr;grid-template-rows:clamp(220px,27vw,390px) clamp(180px,19vw,270px);gap:12px}
+.g{border-radius:3px;cursor:zoom-in}
+.g figcaption{opacity:1;transform:none;border-radius:2px;background:rgba(20,42,33,.78);color:#fff;border:0;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.gallery:hover .g:not(:hover){filter:none;opacity:1;transform:none}
+.gallery-hint{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:16px}
+#visit{background:var(--graphite);padding-block:clamp(68px,8vw,110px)}
+#visit .section-head p{color:rgba(243,241,233,.68)}
+.portfolio-card{border-radius:3px;background:rgba(255,255,255,.045);border:1px solid rgba(243,241,233,.16);box-shadow:none}
+.portfolio-card h3{font:500 30px/1.1 var(--font-head);color:#f3f1e9}
+.portfolio-card p{color:rgba(243,241,233,.7);font-size:14px}
+.portfolio-note{background:transparent;border-color:rgba(243,241,233,.18);color:rgba(243,241,233,.6);border-radius:2px}
+.final{background:var(--milk-2);padding-block:clamp(90px,12vw,160px)}
+.final h2{font-size:clamp(46px,7vw,88px);line-height:.98;letter-spacing:-.04em}
+.final .eyebrow{letter-spacing:.2em}
+.final .text-gold{background:none;color:var(--graphite)}
+footer{background:var(--graphite);color:rgba(243,241,233,.7);border:0}
+footer .logo,footer .foot a{color:#f3f1e9}
+footer .foot h4{color:#c9b88e}
+footer .disclaimer{border-color:rgba(243,241,233,.18)}
+.mcta{border-radius:3px}
+.lightbox{width:min(1100px,calc(100% - 28px));max-width:none;max-height:calc(100% - 28px);padding:54px 64px 30px;border:1px solid rgba(255,255,255,.18);background:#111a15;color:#fff;overflow:visible}
+.lightbox::backdrop{background:rgba(5,12,9,.88);backdrop-filter:blur(8px)}
+.lightbox figure{margin:0;text-align:center}
+.lightbox-image{max-height:75vh;width:auto;max-width:100%;margin:auto;object-fit:contain}
+.lightbox-caption{text-align:center;margin-top:14px;color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.lightbox-close,.lightbox-prev,.lightbox-next{position:absolute;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;border-radius:50%;width:42px;height:42px;cursor:pointer;font:300 28px/1 var(--font-body)}
+.lightbox-close{right:12px;top:12px}.lightbox-prev{left:10px;top:50%;transform:translateY(-50%)}.lightbox-next{right:10px;top:50%;transform:translateY(-50%)}
+@media(max-width:760px){
+ .header .row{height:66px}.sheet{inset:66px 0 auto 0}
+ .hero{padding-top:10px}.hero-frame{min-height:680px;border-radius:3px;background-position:58% center}
+ .hero-frame::before{background:linear-gradient(0deg,rgba(13,25,20,.94) 0%,rgba(13,25,20,.64) 58%,rgba(13,25,20,.12) 100%)}
+ .hero-content{padding:26px 24px 34px}.hero h1{font-size:clamp(48px,14vw,72px);margin:22px 0}
+ .hero h1 .h1-top{font-size:.29em;letter-spacing:.13em}
+ .hero .actions .btn{flex:1 1 100%}
+ .signature-inner{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+ .signature-lead{grid-column:1/-1;margin-bottom:4px}
+ .signature-item{font-size:9px;line-height:1.5}
+ section{padding-block:70px}
+ .section-head{display:grid;gap:22px}
+ .section-head h2,.about-text h2{font-size:clamp(42px,12vw,58px)}
+ .tabs{border-radius:3px;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:4px}
+ .tab{flex:0 0 auto;min-height:42px}
+ .panel.active{grid-template-columns:1fr;gap:12px}
+ .panel .list{grid-column:auto}
+ .dish .body{flex-direction:row;align-items:center}.dish .desc{display:block}
+ .gallery{grid-template-columns:1fr 1fr;grid-template-rows:210px 160px 160px}
+ .g1{grid-row:span 2}.g4{grid-column:1/-1}
+ .lightbox{padding:54px 12px 22px}
+ .lightbox-prev{left:-8px}.lightbox-next{right:-8px}
+ .foot{grid-template-columns:1fr 1fr;gap:26px}
+}
+@media(max-width:420px){.foot{grid-template-columns:1fr}.hero .actions .btn{width:100%}.mcta .btn{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.dish .ph img{transition:none}.lightbox-prev,.lightbox-next{transform:none}}
+
 </style>
 </head>
 <body>
@@ -483,7 +597,8 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
     <nav class="nav" aria-label="Основная навигация">
       <a href="#menu">Меню</a>
       <a href="#about">О кофейне</a>
-      <a href="#visit">О проекте</a>
+      <a href="#gallery">Атмосфера</a>
+      <a href="#visit">О концепции</a>
     </nav>
     <div class="head-actions">
     <button class="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Сменить тему">
@@ -509,12 +624,12 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   <div class="container">
     <div class="hero-frame grain" id="hero" role="img" aria-label="Чашка капучино на столике у окна в кофейне «Пенка»">
       <div class="hero-content">
-        <span class="chip"><span class="signature-mark" aria-hidden="true">✦</span>Дизайн-концепция</span>
-        <h1><span class="h1-top">Концепт сайта кофейни</span><em>«Пенка» — кофе и уют</em></h1>
-        <p class="lead">Визуальная история о кофе, выпечке и атмосфере места, в которое хочется возвращаться.</p>
+        <span class="chip"><span class="signature-mark" aria-hidden="true">✦</span>PENKA COFFEE • BAKERY • DESIGN</span>
+        <h1><span class="h1-top">Место, где утро</span><em>становится особенным</em></h1>
+        <p class="lead">Кофе, свежая выпечка и эстетика маленьких удовольствий.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#menu">Посмотреть меню <svg><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-light" href="#about">О проекте</a>
+          <a class="btn btn-light" href="#gallery">Открыть галерею</a>
         </div>
         <div class="meta">
           <span class="chip">Премиальная визуальная система</span>
@@ -544,9 +659,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <span class="tag">пример зоны у окна</span>
     </div>
     <div class="about-text">
-      <span class="eyebrow" data-fade>о проекте</span>
-      <h2 data-fade>Концепция современного сайта кофейни</h2>
-      <p class="big" data-fade>«Пенка» — демонстрационная концепция сайта современной кофейни. В проекте показаны оформление меню, подача кофейных напитков и выпечки, галерея интерьера и адаптивная навигация. Название, ассортимент, цены, адрес и контакты вымышлены: это дизайн-концепт для портфолио, а не действующее заведение.</p>
+      <span class="eyebrow" data-fade>01 / философия места</span>
+      <h2 data-fade>Больше, чем просто кофе.</h2>
+      <p class="big" data-fade>ПЕНКА — образ кофейного места, где вкус встречается с вниманием к деталям. Здесь важны не только зерно и способ приготовления, но и тактильность керамики, аромат тёплой выпечки, свет на столе и несколько минут для себя. Это самостоятельная визуальная концепция, созданная для портфолио.</p>
       <div class="features">
         <div class="feature card" data-fade style="--d:.05s"><span class="ico"><svg><use href="#i-bean"/></svg></span><div><b>Акцент на кофе</b><small>Визуальный образ современной кофейни</small></div></div>
         <div class="feature card" data-fade style="--d:.12s"><span class="ico"><svg><use href="#i-bun"/></svg></span><div><b>Выпечка в меню-концепции</b><small>Пример оформления десертов и сезонных позиций</small></div></div>
@@ -561,14 +676,16 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   <div class="container">
     <div class="section-head">
       <div>
-        <span class="eyebrow" data-fade>пример оформления ассортимента</span>
-        <h2 data-fade>Меню</h2>
+        <span class="eyebrow" data-fade>02 / coffee & bakery</span>
+        <h2 data-fade>Меню вкусов</h2>
         <p class="menu-disclaimer">Названия, описания и цены условные — это пример оформления меню, а не реальное предложение.</p>
       </div>
       <div class="tabs" role="tablist" aria-label="Категории меню">
         <button class="tab" role="tab" id="t-coffee" aria-controls="p-coffee" aria-selected="true">Кофе</button>
-        <button class="tab" role="tab" id="t-other" aria-controls="p-other" aria-selected="false" tabindex="-1">Не кофе</button>
+        <button class="tab" role="tab" id="t-other" aria-controls="p-other" aria-selected="false" tabindex="-1">Авторские</button>
+        <button class="tab" role="tab" id="t-tea" aria-controls="p-tea" aria-selected="false" tabindex="-1">Чай</button>
         <button class="tab" role="tab" id="t-bake" aria-controls="p-bake" aria-selected="false" tabindex="-1">Выпечка</button>
+        <button class="tab" role="tab" id="t-dessert" aria-controls="p-dessert" aria-selected="false" tabindex="-1">Десерты</button>
       </div>
     </div>
 
@@ -592,6 +709,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         <p class="hand">летние позиции — пример меню</p></div>
     </div>
 
+    <div class="panel" role="tabpanel" id="p-tea" aria-labelledby="t-tea" tabindex="0">
+      <div class="card list"><h3>Чайная карта</h3><ul><li>Чай листовой<span class="dots"></span>от 200 ₽</li><li>Имбирный с мёдом<span class="dots"></span>от 220 ₽</li><li>Холодный чай<span class="dots"></span>от 200 ₽</li></ul><p class="hand">время замедлиться</p></div>
+      <div class="card list"><h3>Тёплые альтернативы</h3><ul><li>Какао на молоке<span class="dots"></span>от 230 ₽</li><li>Матча-латте<span class="dots"></span>от 290 ₽</li></ul></div>
+    </div>
+
     <div class="panel" role="tabpanel" id="p-bake" aria-labelledby="t-bake" tabindex="0">
       <article class="card dish"><div class="ph"><img src="img/penka-bun.webp" alt="Булочка с корицей" loading="lazy" width="720" height="720"></div>
         <div class="body"><div><h3>Булочка с корицей</h3><p class="desc">Пример описания выпечки в меню</p></div><span class="price">180 ₽</span></div></article>
@@ -600,6 +722,12 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <div class="card list"><h3>Ещё на витрине</h3>
         <ul><li>Круассан<span class="dots"></span>190 ₽</li><li>Морковный кекс<span class="dots"></span>220 ₽</li><li>Печенье с шоколадом<span class="dots"></span>140 ₽</li><li>Тост с сыром<span class="dots"></span>260 ₽</li></ul>
         <p class="hand">пример оформления витрины</p></div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-dessert" aria-labelledby="t-dessert" tabindex="0">
+      <article class="card dish"><div class="ph"><img src="img/penka-pastry.webp" alt="Ассорти свежей выпечки и десертов" loading="lazy" width="720" height="720"></div>
+        <div class="body"><div><h3>Сладкая витрина</h3><p class="desc">Десерты и выпечка в эстетике ПЕНКИ</p></div><span class="price">от 140 ₽</span></div></article>
+      <div class="card list"><h3>К чаю и кофе</h3><ul><li>Морковный кекс<span class="dots"></span>220 ₽</li><li>Печенье с шоколадом<span class="dots"></span>140 ₽</li><li>Банановый хлеб<span class="dots"></span>210 ₽</li><li>Булочка с корицей<span class="dots"></span>180 ₽</li></ul></div>
     </div>
 
     <div class="menu-foot">
@@ -616,12 +744,13 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
       <div><span class="eyebrow" data-fade>визуальная концепция</span><h2 data-fade>Атмосфера и интерьер</h2></div>
       <p data-fade>Подборка изображений для визуальной концепции кофейни.</p>
     </div>
-    <div class="gallery">
+    <div class="gallery" aria-label="Галерея фотографий ПЕНКА">
       <figure class="g g1" data-fade tabindex="0"><img src="img/penka-barista.webp" alt="Бариста наливает молоко в капучино" loading="lazy"><figcaption>Стойка бариста</figcaption></figure>
       <figure class="g g2" data-fade style="--d:.08s" tabindex="0"><img src="img/penka-dog.webp" alt="Гость с ноутбуком, под столом лежит собака" loading="lazy"><figcaption>Гостевая атмосфера</figcaption></figure>
       <figure class="g g3" data-fade style="--d:.16s" tabindex="0"><img src="img/penka-filter.webp" alt="Фильтр-кофе на деревянном столе" loading="lazy"><figcaption>Фильтр-кофе</figcaption></figure>
       <figure class="g g4" data-fade style="--d:.24s" tabindex="0"><img src="img/penka-pastry.webp" alt="Витрина с булочками, круассанами и банановым хлебом" loading="lazy" style="object-position:center 60%"><figcaption>Утренняя витрина</figcaption></figure>
     </div>
+    <p class="gallery-hint">Изображения открываются в полноэкранном просмотре</p>
     <div class="caption-line">
       <div data-fade><b>Зона у окна.</b><span>Пример уютного пространства для гостей.</span></div>
       <div data-fade style="--d:.08s"><b>Стойка бариста.</b><span>Один из акцентов визуальной концепции.</span></div>
@@ -650,12 +779,20 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
 <section class="final">
   <div class="container">
     <svg class="cup-ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 26h34v9a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 29h3a6 6 0 0 1 0 12h-4"/><path d="M8 56h44"/></svg>
-    <h2 data-fade>Пенка — <em class="text-gold">концепция</em> кофейни.</h2>
-    <p data-fade>Демонстрационный веб-проект для портфолио.</p>
-    <div class="actions" data-fade><a class="btn btn-primary" href="#menu">Посмотреть меню-концепцию</a><a class="btn btn-outline" href="#about">О проекте</a></div>
+    <span class="eyebrow">PENKA / COFFEE • BAKERY • DESIGN</span>
+    <h2 data-fade>Ваше время на чашку <em class="text-gold">хорошего кофе.</em></h2>
+    <p data-fade>Небольшая пауза. Большое удовольствие.</p>
+    <div class="actions" data-fade><a class="btn btn-primary" href="#menu">Посмотреть меню</a></div>
   </div>
 </section>
 </main>
+
+<dialog class="lightbox" aria-label="Просмотр фотографии">
+  <button class="lightbox-close" type="button" aria-label="Закрыть галерею">×</button>
+  <button class="lightbox-prev" type="button" aria-label="Предыдущее фото">‹</button>
+  <figure><img class="lightbox-image" alt=""><figcaption class="lightbox-caption"></figcaption></figure>
+  <button class="lightbox-next" type="button" aria-label="Следующее фото">›</button>
+</dialog>
 
 <footer>
   <div class="container">
@@ -743,6 +880,36 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
         nextTab.focus();
       }
     });
+  });
+
+
+  // Accessible full-screen gallery
+  const galleryItems=[...document.querySelectorAll('.gallery .g')];
+  const lightbox=document.querySelector('.lightbox'), lightboxImage=lightbox.querySelector('.lightbox-image'), lightboxCaption=lightbox.querySelector('.lightbox-caption');
+  let galleryIndex=0, galleryReturnFocus=null;
+  const showGalleryImage=(index)=>{
+    galleryIndex=(index+galleryItems.length)%galleryItems.length;
+    const figure=galleryItems[galleryIndex], img=figure.querySelector('img');
+    lightboxImage.src=img.currentSrc||img.src; lightboxImage.alt=img.alt;
+    lightboxCaption.textContent=figure.querySelector('figcaption')?.textContent||img.alt;
+  };
+  const openGallery=(index)=>{
+    galleryReturnFocus=document.activeElement;showGalleryImage(index);
+    if(!lightbox.open)lightbox.showModal();
+    lightbox.querySelector('.lightbox-close').focus();
+  };
+  galleryItems.forEach((figure,index)=>{
+    figure.addEventListener('click',()=>openGallery(index));
+    figure.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGallery(index)}});
+  });
+  lightbox.querySelector('.lightbox-close').addEventListener('click',()=>lightbox.close());
+  lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>showGalleryImage(galleryIndex-1));
+  lightbox.querySelector('.lightbox-next').addEventListener('click',()=>showGalleryImage(galleryIndex+1));
+  lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.close()});
+  lightbox.addEventListener('close',()=>galleryReturnFocus?.focus());
+  lightbox.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){e.preventDefault();showGalleryImage(galleryIndex-1)}
+    if(e.key==='ArrowRight'){e.preventDefault();showGalleryImage(galleryIndex+1)}
   });
 
   // Blur-fade on scroll
