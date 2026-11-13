@@ -17,10 +17,12 @@
 <meta property="og:description" content="Кофе, свежая выпечка и эстетика маленьких удовольствий. Концептуальный проект для портфолио.">
 <meta property="og:url" content="https://marcostavar24633-cyber.github.io/Penka/">
 <meta property="og:image" content="https://marcostavar24633-cyber.github.io/Penka/img/penka-hero.webp">
+<meta property="og:image:alt" content="Визуальная концепция PENKA — кофе, выпечка и интерьер в эстетике quiet luxury">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Пенка — концепт сайта кофейни">
 <meta name="twitter:description" content="Демонстрационный проект сайта кофейни: дизайн, меню кофе и выпечки, галерея и адаптивная версия.">
 <meta name="twitter:image" content="https://marcostavar24633-cyber.github.io/Penka/img/penka-hero.webp">
+<meta name="twitter:image:alt" content="Визуальная концепция PENKA — кофе, выпечка и интерьер в эстетике quiet luxury">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1370,8 +1372,8 @@ section,.signature-strip,.penka-marquee,footer{min-width:0}
 <script>
 (() => {
   // Theme toggle: light by default, choice remembered
-  const root = document.documentElement, tbtn = document.querySelector('.theme-toggle');
-  const syncLabel = () => tbtn.setAttribute('aria-label', root.getAttribute('data-theme') === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему');
+  const root = document.documentElement, tbtn = document.querySelector('.theme-toggle'), themeMeta = document.querySelector('meta[name="theme-color"]');
+  const syncLabel = () => { const dark = root.getAttribute('data-theme') === 'dark'; tbtn.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему'); if(themeMeta) themeMeta.setAttribute('content', dark ? '#101916' : '#f3f1e9'); };
   syncLabel();
   tbtn.addEventListener('click', e => {
     const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
