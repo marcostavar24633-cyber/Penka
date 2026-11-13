@@ -744,6 +744,29 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
  .g:hover img{transform:none}
 }
 
+
+/* ============ Dynamic editorial image atmosphere ============ */
+.hero-frame{overflow:hidden}
+.hero-image-stack{position:absolute;z-index:1;right:clamp(24px,5vw,76px);top:50%;width:min(39%,430px);height:min(72%,520px);transform:translateY(-43%);pointer-events:none;perspective:1000px}
+.hero-float{position:absolute;overflow:hidden;border:1px solid rgba(255,253,248,.7);border-radius:22px;box-shadow:0 24px 70px rgba(10,25,18,.24);will-change:transform;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.hero-float img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:editorial-drift 18s ease-in-out infinite alternate}
+.hero-float-a{width:54%;height:60%;right:3%;top:2%;transform:rotate(7deg);z-index:2}
+.hero-float-b{width:49%;height:48%;left:1%;bottom:4%;transform:rotate(-8deg);z-index:3}
+.hero-float-c{width:42%;height:38%;right:0;bottom:0;transform:rotate(4deg);z-index:1}
+.hero-float-b img{animation-delay:-5s}.hero-float-c img{animation-delay:-10s}
+.hero-image-caption{position:absolute;right:4%;top:0;transform:translateY(-150%);font:700 10px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--terra-h);white-space:nowrap}
+@keyframes editorial-drift{from{transform:scale(1.04) translate3d(-1%,0,0)}to{transform:scale(1.12) translate3d(1.5%,-1.5%,0)}}
+.hero-content{position:relative;z-index:4}
+.hero .note{z-index:4}
+.hero-frame::after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at 82% 50%,rgba(182,154,98,.18),transparent 42%),linear-gradient(115deg,transparent 48%,rgba(255,255,255,.08) 70%,transparent 88%);mix-blend-mode:soft-light;animation:ambient-shift 14s ease-in-out infinite alternate}
+@keyframes ambient-shift{from{opacity:.45;transform:translateX(-2%)}to{opacity:1;transform:translateX(2%)}}
+.dish .ph img,.gallery .g img,.about-photo img{transition:transform .9s cubic-bezier(.2,.65,.2,1),filter .6s ease}
+.dish:hover .ph img,.gallery .g:hover img,.about-photo:hover img{transform:scale(1.065);filter:saturate(1.08)}
+.gallery .g{overflow:hidden}
+@media(max-width:900px){.hero-image-stack{right:18px;width:34%;opacity:.82}.hero-float{border-radius:16px}.hero-content{max-width:68%}}
+@media(max-width:640px){.hero-image-stack{right:14px;top:20px;transform:none;width:42%;height:220px;opacity:.58}.hero-float-a{width:58%;height:65%}.hero-float-b{width:54%;height:48%;bottom:0}.hero-float-c{width:43%;height:35%;bottom:-2%}.hero-image-caption{display:none}.hero-content{max-width:100%;padding-top:245px}.hero-frame::after{background:linear-gradient(180deg,transparent 0%,rgba(243,241,233,.08) 25%,transparent 58%)}}
+@media(prefers-reduced-motion:reduce){.hero-float img,.hero-frame::after{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -829,6 +852,12 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
       </div>
       <div class="note" aria-hidden="true">кофейная<br>эстетика
         <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M52 4C40 10 26 18 10 32M10 32l2-10M10 32l10-2"/></svg>
+      </div>
+      <div class="hero-image-stack" aria-hidden="true">
+        <div class="hero-float hero-float-a"><img src="img/penka-cappuccino.webp" alt=""></div>
+        <div class="hero-float hero-float-b"><img src="img/penka-pastry.webp" alt=""></div>
+        <div class="hero-float hero-float-c"><img src="img/penka-barista.webp" alt=""></div>
+        <span class="hero-image-caption">coffee moments · 01—03</span>
       </div>
     </div>
   </div>
@@ -1106,6 +1135,24 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   // Blur-fade on scroll
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('[data-fade]').forEach(el => io.observe(el));
+
+  // Subtle pointer parallax for the editorial photo collage
+  const stack = document.querySelector('.hero-image-stack');
+  if (stack && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const layers = [...stack.querySelectorAll('.hero-float')];
+    stack.closest('.hero-frame').addEventListener('pointermove', e => {
+      const r = stack.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      layers.forEach((layer, i) => {
+        const depth = (i + 1) * 7;
+        layer.style.translate = `${dx * depth}px ${dy * depth}px`;
+      });
+    });
+    stack.closest('.hero-frame').addEventListener('pointerleave', () => {
+      layers.forEach(layer => { layer.style.translate = '0 0'; });
+    });
+  }
 
   // Spotlight (hero + menu cards)
   const fine = matchMedia('(pointer:fine)').matches;
