@@ -44,7 +44,7 @@
   ]
 }
 </script>
-<script>try{var t=localStorage.getItem('penka-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('penka-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -177,7 +177,7 @@ p{margin:0}
 .is-closed .pulse::after{animation:none}
 
 /* Magic UI — blur-fade on scroll */
-[data-fade]{opacity:0;filter:blur(8px);transform:translateY(14px);transition:opacity .7s ease,filter .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js [data-fade]{opacity:0;filter:blur(8px);transform:translateY(14px);transition:opacity .7s ease,filter .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
 [data-fade].in{opacity:1;filter:none;transform:none}
 
 /* ============ Фон: кофейные зёрна разной обжарки, полупрозрачно ============ */
