@@ -778,6 +778,58 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   .hero-content{padding-left:24px;padding-right:24px}
 }
 
+
+/* ===== PENKA editorial expansion ===== */
+.preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--milk);color:var(--graphite);transition:clip-path .9s cubic-bezier(.77,0,.18,1),visibility .9s}
+.preloader.is-done{clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none}
+.preloader-inner{display:grid;justify-items:center;gap:12px}
+.preloader-mark{font:600 clamp(42px,8vw,76px)/1 var(--font-head);letter-spacing:.12em}
+.preloader-mark:after{content:"";display:block;height:1px;width:100%;margin-top:14px;background:var(--terra);transform-origin:left;animation:penka-line 1s ease both}
+.preloader-sub{font-size:10px;letter-spacing:.28em;color:var(--muted)}
+@keyframes penka-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.penka-marquee{overflow:hidden;background:var(--graphite);color:var(--on-dark);padding:15px 0}
+.penka-marquee-track{display:flex;width:max-content;animation:penka-marquee 34s linear infinite}
+.penka-marquee span{padding:0 24px;white-space:nowrap;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.penka-marquee i{font-style:normal;color:var(--terra)}
+@keyframes penka-marquee{to{transform:translateX(-50%)}}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.pillar{position:relative;min-height:390px;overflow:hidden;border-radius:var(--radius-lg);background:var(--panel);isolation:isolate}
+.pillar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.pillar:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,20,15,.78),rgba(8,20,15,.04) 68%);z-index:0}
+.pillar:hover img{transform:scale(1.055)}
+.pillar-copy{position:absolute;z-index:1;left:26px;right:26px;bottom:25px;color:#fff}
+.pillar-copy .eyebrow{color:#e2d2ad}
+.pillar-copy h3{font:500 clamp(34px,4vw,54px)/.98 var(--font-head);margin:8px 0}
+.pillar-copy p{max-width:290px;margin:0;color:rgba(255,255,255,.82);font-size:13px}
+.editorial-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,90px);align-items:center}
+.editorial-feature.reverse .editorial-image{order:2}
+.editorial-image{position:relative;min-height:540px;overflow:hidden;border-radius:var(--radius-lg);background:var(--panel)}
+.editorial-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.editorial-image:hover img{transform:scale(1.04)}
+.editorial-copy h2{margin:12px 0 22px}
+.editorial-copy p{max-width:510px;color:var(--muted)}
+.editorial-index{display:inline-flex;align-items:center;gap:12px;color:var(--terra);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.editorial-index:after{content:"";width:42px;height:1px;background:currentColor}
+.process-list{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:42px;border-top:1px solid var(--line)}
+.process-step{padding:22px 18px 0 0;position:relative}
+.process-step:before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--terra)}
+.process-step b{display:block;font:500 25px var(--font-head);color:var(--graphite);margin-bottom:8px}
+.process-step p{font-size:12px;color:var(--muted);margin:0}
+@media(max-width:760px){
+ .pillars{grid-template-columns:1fr;gap:12px}
+ .pillar{min-height:320px}
+ .editorial-feature,.editorial-feature.reverse{grid-template-columns:1fr;gap:24px}
+ .editorial-feature.reverse .editorial-image{order:0}
+ .editorial-image{min-height:390px}
+ .process-list{grid-template-columns:1fr;gap:20px;border-top:0;border-left:1px solid var(--line);margin-left:5px;padding-left:20px}
+ .process-step{padding:0 0 0 4px}
+ .process-step:before{top:7px;left:-24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .preloader-mark:after,.penka-marquee-track{animation:none}
+ .pillar img,.editorial-image img{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -807,6 +859,7 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   <symbol id="logo-cup" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="19" style="fill:var(--terra)"/><path d="M11 16h16v5a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7z" style="fill:var(--onaccent)"/><path d="M27 17.5h1.5a3 3 0 0 1 0 6H26.5" style="stroke:var(--onaccent)" stroke-width="2"/><path d="M14 16c1.5-1.6 3.5-1.6 5 0s3.5 1.6 5 0" style="stroke:var(--terra)" stroke-width="1.6"/></symbol>
 </svg>
 
+<div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-inner"><div class="preloader-mark">PENKA</div><div class="preloader-sub">COFFEE · BAKERY · DESIGN</div></div></div>
 <a class="sr-only" href="#main">Перейти к содержимому</a>
 
 <div class="infobar" role="note">
@@ -878,6 +931,24 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
       <div class="signature-item"><span class="signature-mark" aria-hidden="true">01</span><span>Выразительная визуальная система</span></div>
       <div class="signature-item"><span class="signature-mark" aria-hidden="true">02</span><span>Меню и галерея в едином стиле</span></div>
       <div class="signature-item"><span class="signature-mark" aria-hidden="true">03</span><span>Адаптивный интерфейс</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PENKA EDITORIAL TICKER -->
+<div class="penka-marquee" aria-label="Coffee culture, fresh bakery, good mood">
+  <div class="penka-marquee-track" aria-hidden="true">
+    <span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span><span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span>
+  </div>
+</div>
+<section aria-labelledby="pillars-title">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow" data-fade>THE PENKA WAY</span><h2 id="pillars-title" data-fade>Три стороны <em class="text-gold">одного настроения.</em></h2></div><p data-fade>Кофе, выпечка и пространство — детали, из которых складывается атмосфера PENKA.</p></div>
+    <div class="pillars">
+      <a class="pillar" href="#menu"><img src="img/penka-cappuccino.webp" alt="Капучино с молочной пеной" loading="lazy"><div class="pillar-copy"><span class="eyebrow">01 / COFFEE</span><h3>Кофе</h3><p>Маленький ритуал, который задаёт тон всему дню.</p></div></a>
+      <a class="pillar" href="#menu"><img src="img/penka-bun.webp" alt="Слоёная выпечка" loading="lazy"><div class="pillar-copy"><span class="eyebrow">02 / BAKERY</span><h3>Выпечка</h3><p>Тёплые текстуры, хрустящие слои и удовольствие без повода.</p></div></a>
+      <a class="pillar" href="#gallery"><img src="img/penka-about.webp" alt="Интерьер кофейни" loading="lazy"><div class="pillar-copy"><span class="eyebrow">03 / DESIGN</span><h3>Пространство</h3><p>Свет, материалы и детали, которые хочется рассматривать.</p></div></a>
     </div>
   </div>
 </section>
@@ -990,6 +1061,44 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   </div>
 </section>
 
+
+<!-- PENKA EDITORIAL STORIES -->
+<section>
+ <div class="container editorial-feature">
+  <div class="editorial-image" data-fade><img src="img/penka-filter.webp" alt="Фильтр-кофе в стеклянном чайнике" loading="lazy"></div>
+  <div class="editorial-copy">
+   <span class="editorial-index">01 / COFFEE CULTURE</span>
+   <h2 data-fade>Хороший кофе —<br><em class="text-gold">больше, чем напиток.</em></h2>
+   <p data-fade>Это аромат свежемолотого зерна, точность приготовления, мягкая текстура молока и несколько минут, которые принадлежат только вам.</p>
+   <a class="btn btn-outline" href="#menu">Исследовать меню <svg><use href="#i-arrow"/></svg></a>
+  </div>
+ </div>
+</section>
+<section>
+ <div class="container editorial-feature reverse">
+  <div class="editorial-image" data-fade><img src="img/penka-pastry.webp" alt="Свежая выпечка и десерты" loading="lazy"></div>
+  <div class="editorial-copy">
+   <span class="editorial-index">02 / BAKERY MOMENTS</span>
+   <h2 data-fade>Вкусные паузы<br><em class="text-gold">в течение дня.</em></h2>
+   <p data-fade>Слоёная выпечка, нежные десерты и сочетания, которые особенно хороши рядом с чашкой любимого кофе.</p>
+   <a class="btn btn-outline" href="#menu">К витрине меню <svg><use href="#i-arrow"/></svg></a>
+  </div>
+ </div>
+</section>
+<section class="grain">
+ <div class="container">
+  <div class="section-head"><div><span class="eyebrow" data-fade>FROM BEAN TO CUP</span><h2 data-fade>Маленькие детали.<br><em class="text-gold">Большое удовольствие.</em></h2></div><p data-fade>Пять образов кофейного ритуала — от первых движений бариста до готового напитка.</p></div>
+  <div class="process-list">
+   <div class="process-step" data-fade><b>01</b><p>Зерно и подготовка</p></div>
+   <div class="process-step" data-fade><b>02</b><p>Свежий помол</p></div>
+   <div class="process-step" data-fade><b>03</b><p>Экстракция</p></div>
+   <div class="process-step" data-fade><b>04</b><p>Текстура молока</p></div>
+   <div class="process-step" data-fade><b>05</b><p>Подача напитка</p></div>
+  </div>
+  <p class="menu-disclaimer" style="margin-top:22px">Иллюстрация кофейного процесса в рамках демонстрационной концепции PENKA.</p>
+ </div>
+</section>
+
 <!-- ============ VISIT ============ -->
 <section id="visit" class="grain">
   <div class="container">
@@ -1041,6 +1150,9 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
   <a class="btn btn-primary" href="#about">О проекте</a>
 </div>
 
+<script id="preloader-script">
+(() => { const loader=document.getElementById("preloader"); if(loader){const done=()=>loader.classList.add("is-done"); if(matchMedia("(prefers-reduced-motion: reduce)").matches) done(); else window.addEventListener("load",()=>setTimeout(done,450),{once:true}); setTimeout(done,1800); } })();
+</script>
 <script>
 (() => {
   // Theme toggle: light by default, choice remembered
