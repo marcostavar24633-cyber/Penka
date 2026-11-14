@@ -1400,7 +1400,13 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     const inVisit = visitTop.top < innerHeight * .6 && visitTop.bottom > 0;
     mcta.classList.toggle('show', heroBottom < 80 && !inVisit);
   };
-  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  let scrollFramePending = false;
+  const scheduleScrollUpdate = () => {
+    if (scrollFramePending) return;
+    scrollFramePending = true;
+    requestAnimationFrame(() => { scrollFramePending = false; onScroll(); });
+  };
+  addEventListener('scroll', scheduleScrollUpdate, {passive:true}); onScroll();
 
   // Mobile sheet
   const toggle = document.querySelector('.menu-toggle'), sheet = document.getElementById('sheet');
