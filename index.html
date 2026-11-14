@@ -1552,16 +1552,25 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   const stack = document.querySelector('.hero-image-stack');
   if (stack && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const layers = [...stack.querySelectorAll('.hero-float')];
-    stack.closest('.hero-frame').addEventListener('pointermove', e => {
-      const r = stack.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-      layers.forEach((layer, i) => {
-        const depth = (i + 1) * 7;
-        layer.style.translate = `${dx * depth}px ${dy * depth}px`;
+    const frame = stack.closest('.hero-frame');
+    let parallaxFrame = 0, pointerX = 0, pointerY = 0;
+    frame.addEventListener('pointermove', e => {
+      pointerX = e.clientX; pointerY = e.clientY;
+      if (parallaxFrame) return;
+      parallaxFrame = requestAnimationFrame(() => {
+        parallaxFrame = 0;
+        const r = stack.getBoundingClientRect();
+        const dx = (pointerX - (r.left + r.width / 2)) / r.width;
+        const dy = (pointerY - (r.top + r.height / 2)) / r.height;
+        layers.forEach((layer, i) => {
+          const depth = (i + 1) * 7;
+          layer.style.translate = `${dx * depth}px ${dy * depth}px`;
+        });
       });
     });
-    stack.closest('.hero-frame').addEventListener('pointerleave', () => {
+    frame.addEventListener('pointerleave', () => {
+      if (parallaxFrame) cancelAnimationFrame(parallaxFrame);
+      parallaxFrame = 0;
       layers.forEach(layer => { layer.style.translate = '0 0'; });
     });
   }
