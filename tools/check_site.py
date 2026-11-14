@@ -89,7 +89,7 @@ def check_sitemap_and_robots(errors: list[str]) -> None:
 
     html = HTML_FILE.read_text(encoding="utf-8")
     canonical_match = re.search(
-        r'<link\\b[^>]*rel=["\\']canonical["\\'][^>]*href=["\\']([^"\\']+)["\\']',
+        r'<link\b[^>]*rel=["\']canonical["\'][^>]*href=["\']([^"\']+)["\']',
         html,
         flags=re.IGNORECASE,
     )
@@ -116,7 +116,7 @@ def check_sitemap_and_robots(errors: list[str]) -> None:
 
     robots_text = robots_file.read_text(encoding="utf-8")
     sitemap_directives = re.findall(
-        r"^\\s*Sitemap:\\s*(\\S+)\\s*$",
+        r"^\s*Sitemap:\s*(\S+)\s*$",
         robots_text,
         flags=re.IGNORECASE | re.MULTILINE,
     )
