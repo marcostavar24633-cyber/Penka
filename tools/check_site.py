@@ -25,6 +25,7 @@ class SiteParser(HTMLParser):
         self.ids: list[str] = []
         self.images: list[tuple[str, str | None]] = []
         self.references: list[tuple[str, str]] = []
+        self.aria_references: list[tuple[str, str]] = []
         self.h1_count = 0
         self.title = False
         self.description = False
@@ -48,6 +49,10 @@ class SiteParser(HTMLParser):
             value = data.get(attr)
             if value:
                 self.references.append((tag, value))
+        for attr in ("aria-controls", "aria-labelledby", "aria-describedby", "aria-details", "aria-errormessage", "aria-owns"):
+            value = data.get(attr)
+            if value:
+                self.aria_references.append((attr, value))
         srcset = data.get("srcset", "")
         for item in srcset.split(","):
             candidate = item.strip().split(" ")[0] if item.strip() else ""
@@ -147,6 +152,12 @@ def main() -> int:
     duplicates = [item for item, count in Counter(parser.ids).items() if count > 1]
     if duplicates:
         errors.append("Duplicate IDs: " + ", ".join(sorted(duplicates)))
+
+    known_ids = set(parser.ids)
+    for attribute, value in parser.aria_references:
+        for referenced_id in value.split():
+            if referenced_id not in known_ids:
+                errors.append(f"Broken {attribute} reference: {referenced_id}")
 
     for src, alt in parser.images:
         if not src:
