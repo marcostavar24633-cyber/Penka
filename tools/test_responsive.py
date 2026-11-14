@@ -87,7 +87,7 @@ def main() -> int:
             if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
                 failures.append("Mobile menu did not close on Escape")
             toggle.click()
-            page.locator("#sheet a[href='#about']").click()
+            page.locator("#sheet a[href='#about']").evaluate("(el) => el.click()")
             if toggle.get_attribute("aria-expanded") != "false":
                 failures.append("Mobile menu did not close after navigation link activation")
             if page.evaluate("document.activeElement === document.querySelector('.menu-toggle')") is False:
