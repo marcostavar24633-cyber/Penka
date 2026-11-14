@@ -1117,6 +1117,32 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   -webkit-text-fill-color:#e5d2a4;
   animation:none;
 }
+/* Keep the pillars section stable during automated contrast checks and scroll reveal. */
+.pillars-section [data-fade]{
+  opacity:1!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+}
+:root:not([data-theme="dark"]) .pillars-section .eyebrow{color:#765b32!important;-webkit-text-fill-color:#765b32!important}
+:root:not([data-theme="dark"]) .pillars-section #pillars-title{color:#202923!important;-webkit-text-fill-color:#202923!important}
+:root:not([data-theme="dark"]) .pillars-section #pillars-title .text-gold{
+  background:none!important;
+  color:#765b32!important;
+  -webkit-text-fill-color:#765b32!important;
+  animation:none!important;
+}
+:root:not([data-theme="dark"]) .pillars-section .section-head>p{color:#46534b!important;-webkit-text-fill-color:#46534b!important}
+:root[data-theme="dark"] .pillars-section .eyebrow{color:#e5d2a4!important;-webkit-text-fill-color:#e5d2a4!important}
+:root[data-theme="dark"] .pillars-section #pillars-title{color:#f2eee3!important;-webkit-text-fill-color:#f2eee3!important}
+:root[data-theme="dark"] .pillars-section #pillars-title .text-gold{
+  background:none!important;
+  color:#e5d2a4!important;
+  -webkit-text-fill-color:#e5d2a4!important;
+  animation:none!important;
+}
+:root[data-theme="dark"] .pillars-section .section-head>p{color:#c5cdc1!important;-webkit-text-fill-color:#c5cdc1!important}
+
 </style>
 </head>
 <body>
@@ -1625,30 +1651,3 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
 </script>
 </body>
 </html>
-
-
-/* Keep the pillars section stable during automated contrast checks and scroll reveal. */
-.pillars-section [data-fade]{
-  opacity:1!important;
-  filter:none!important;
-  transform:none!important;
-  transition:none!important;
-}
-:root:not([data-theme="dark"]) .pillars-section .eyebrow{color:#765b32!important;-webkit-text-fill-color:#765b32!important}
-:root:not([data-theme="dark"]) .pillars-section #pillars-title{color:#202923!important;-webkit-text-fill-color:#202923!important}
-:root:not([data-theme="dark"]) .pillars-section #pillars-title .text-gold{
-  background:none!important;
-  color:#765b32!important;
-  -webkit-text-fill-color:#765b32!important;
-  animation:none!important;
-}
-:root:not([data-theme="dark"]) .pillars-section .section-head>p{color:#46534b!important;-webkit-text-fill-color:#46534b!important}
-:root[data-theme="dark"] .pillars-section .eyebrow{color:#e5d2a4!important;-webkit-text-fill-color:#e5d2a4!important}
-:root[data-theme="dark"] .pillars-section #pillars-title{color:#f2eee3!important;-webkit-text-fill-color:#f2eee3!important}
-:root[data-theme="dark"] .pillars-section #pillars-title .text-gold{
-  background:none!important;
-  color:#e5d2a4!important;
-  -webkit-text-fill-color:#e5d2a4!important;
-  animation:none!important;
-}
-:root[data-theme="dark"] .pillars-section .section-head>p{color:#c5cdc1!important;-webkit-text-fill-color:#c5cdc1!important}
