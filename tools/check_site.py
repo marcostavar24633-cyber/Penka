@@ -11,6 +11,7 @@ import re
 import sys
 from collections import Counter
 from html.parser import HTMLParser
+from xml.etree import ElementTree
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -75,6 +76,55 @@ def local_target(value: str) -> str | None:
     return path
 
 
+
+def check_sitemap_and_robots(errors: list[str]) -> None:
+    sitemap_file = ROOT / "sitemap.xml"
+    robots_file = ROOT / "robots.txt"
+    if not sitemap_file.is_file():
+        errors.append("sitemap.xml is missing")
+        return
+    if not robots_file.is_file():
+        errors.append("robots.txt is missing")
+        return
+
+    html = HTML_FILE.read_text(encoding="utf-8")
+    canonical_match = re.search(
+        r'<link\\b[^>]*rel=["\\']canonical["\\'][^>]*href=["\\']([^"\\']+)["\\']',
+        html,
+        flags=re.IGNORECASE,
+    )
+    if not canonical_match:
+        errors.append("Canonical URL is missing; sitemap cannot be cross-checked")
+        return
+    canonical_url = canonical_match.group(1).strip()
+
+    try:
+        root = ElementTree.parse(sitemap_file).getroot()
+    except ElementTree.ParseError as exc:
+        errors.append(f"sitemap.xml is invalid XML: {exc}")
+        return
+
+    namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    sitemap_urls = [
+        (node.text or "").strip()
+        for node in root.findall(".//sm:loc", namespace)
+    ]
+    if not sitemap_urls:
+        errors.append("sitemap.xml contains no URL entries")
+    elif canonical_url not in sitemap_urls:
+        errors.append("Canonical URL is missing from sitemap.xml")
+
+    robots_text = robots_file.read_text(encoding="utf-8")
+    sitemap_directives = re.findall(
+        r"^\\s*Sitemap:\\s*(\\S+)\\s*$",
+        robots_text,
+        flags=re.IGNORECASE | re.MULTILINE,
+    )
+    expected_sitemap = canonical_url.rsplit("/", 1)[0] + "/sitemap.xml"
+    if expected_sitemap not in sitemap_directives:
+        errors.append("robots.txt does not declare the project's sitemap.xml URL")
+
+
 def main() -> int:
     if not HTML_FILE.is_file():
         print("ERROR: index.html not found in repository root")
@@ -91,6 +141,8 @@ def main() -> int:
         errors.append("Meta description is missing or empty")
     if parser.h1_count != 1:
         errors.append(f"Expected exactly one H1, found {parser.h1_count}")
+
+    check_sitemap_and_robots(errors)
 
     duplicates = [item for item, count in Counter(parser.ids).items() if count > 1]
     if duplicates:
