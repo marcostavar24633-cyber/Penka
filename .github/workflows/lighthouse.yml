@@ -1,0 +1,26 @@
+name: PENKA Lighthouse audit
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Audit published site
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Run Lighthouse on GitHub Pages
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://marcostavar24633-cyber.github.io/Penka/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
