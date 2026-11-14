@@ -766,8 +766,8 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
 @keyframes editorial-drift{from{transform:scale(1.04) translate3d(-1%,0,0)}to{transform:scale(1.12) translate3d(1.5%,-1.5%,0)}}
 .hero-content{position:relative;z-index:4}
 .hero .note{z-index:4}
-.hero-frame::after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at 82% 50%,rgba(182,154,98,.18),transparent 42%),linear-gradient(115deg,transparent 48%,rgba(255,255,255,.08) 70%,transparent 88%);mix-blend-mode:soft-light;animation:ambient-shift 14s ease-in-out infinite alternate}
-@keyframes ambient-shift{from{opacity:.45;transform:translateX(-2%)}to{opacity:1;transform:translateX(2%)}}
+.hero-frame::after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at 82% 50%,rgba(182,154,98,.14),transparent 42%),linear-gradient(115deg,transparent 48%,rgba(255,255,255,.05) 70%,transparent 88%)}
+/* Статичный overlay: без blend-mode и бесконечной анимации для более быстрой отрисовки hero. */
 .dish .ph img,.gallery .g img,.about-photo img{transition:transform .9s cubic-bezier(.2,.65,.2,1),filter .6s ease}
 .dish:hover .ph img,.gallery .g:hover img,.about-photo:hover img{transform:scale(1.065);filter:saturate(1.08)}
 .gallery .g{overflow:hidden}
