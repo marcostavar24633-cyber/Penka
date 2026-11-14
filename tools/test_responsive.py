@@ -48,9 +48,8 @@ def main() -> int:
             else:
                 page.add_script_tag(path=str(axe_path))
                 for theme_name in ("light", "dark"):
-                    if theme_name == "dark":
-                        page.locator(".theme-toggle").click()
-                    else:
+                    current_theme = page.evaluate("document.documentElement.getAttribute('data-theme')")
+                    if (theme_name == "dark" and current_theme != "dark") or (theme_name == "light" and current_theme == "dark"):
                         page.locator(".theme-toggle").click()
                     page.wait_for_function(
                         "() => document.documentElement.getAttribute('data-theme') === "
