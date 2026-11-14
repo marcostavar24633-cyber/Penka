@@ -53,6 +53,14 @@ def main() -> int:
                     else:
                         page.evaluate("document.documentElement.removeAttribute('data-theme')")
                     page.wait_for_timeout(800)
+                    if theme_name == "dark":
+                        debug = page.evaluate("""() => ({
+                          theme: document.documentElement.getAttribute('data-theme'),
+                          tabColor: getComputedStyle(document.querySelector('#t-other')).color,
+                          tabBg: getComputedStyle(document.querySelector('#t-other')).backgroundColor,
+                          selectorMatches: document.querySelector(':root[data-theme="dark"] #menu .tabs .tab') !== null
+                        })""")
+                        print(f"DARK THEME DEBUG: {debug}")
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
                         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
