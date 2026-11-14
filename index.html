@@ -1423,7 +1423,7 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     if(themeMeta) themeMeta.setAttribute('content', dark ? '#101916' : '#f3f1e9');
     // Keep inactive category labels readable even if a later component style overrides theme tokens.
     document.querySelectorAll('#menu .tabs .tab[aria-selected="false"]').forEach(tab => {
-      if (dark) tab.style.color = '#e1e7dc';
+      if (dark) tab.style.setProperty('color', '#e1e7dc', 'important');
       else tab.style.removeProperty('color');
     });
   };
