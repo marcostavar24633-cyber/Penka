@@ -41,6 +41,36 @@ def main() -> int:
                 failures.append(f"Page did not load successfully: {response.status if response else 'no response'}")
             page.wait_for_timeout(300)
 
+            # Keyboard skip link must become visible when focused.
+            skip_link = page.locator('a.sr-only[href="#main"]')
+            if skip_link.count() != 1:
+                failures.append("A single skip-to-content link is missing")
+            else:
+                skip_link.focus()
+                skip_box = skip_link.bounding_box()
+                if not skip_box or skip_box["width"] <= 1 or skip_box["height"] <= 1:
+                    failures.append("Skip-to-content link is not visibly revealed on keyboard focus")
+                page.locator("body").click(position={"x": 2, "y": 2})
+
+            # Respect the operating system's reduced-motion preference.
+            page.emulate_media(reduced_motion="reduce")
+            reduced_motion = page.evaluate("""() => {
+              const animation = getComputedStyle(document.querySelector('.penka-marquee-track'));
+              const transition = getComputedStyle(document.querySelector('.btn-primary'));
+              return {
+                enabled: matchMedia('(prefers-reduced-motion: reduce)').matches,
+                animationDuration: parseFloat(animation.animationDuration),
+                animationIterations: animation.animationIterationCount,
+                transitionDuration: parseFloat(transition.transitionDuration)
+              };
+            }""")
+            if not reduced_motion["enabled"] or reduced_motion["animationDuration"] > 0.001:
+                failures.append(f"Reduced-motion preference did not suppress continuous animation: {reduced_motion}")
+            if reduced_motion["animationIterations"] != "1" or reduced_motion["transitionDuration"] > 0.001:
+                failures.append(f"Reduced-motion preference did not minimize motion effects: {reduced_motion}")
+            page.emulate_media(reduced_motion="no-preference")
+            print("PASS accessibility preferences: visible skip link and reduced-motion support")
+
             # Automated WCAG 2.2 AA audit with axe-core in both color themes.
             axe_path = ROOT / "node_modules" / "axe-core" / "axe.min.js"
             if not axe_path.exists():
