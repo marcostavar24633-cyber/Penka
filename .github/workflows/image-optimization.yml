@@ -35,6 +35,7 @@ jobs:
 
       - name: Generate optimized WebP files
         run: python tools/optimize_images.py --quality 78 --max-width 1800 --max-height 1800
+          python tools/generate_responsive_images.py
 
       - name: Replace assets only when files are smaller
         run: |
@@ -65,7 +66,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add img/*.webp
+          git add img/*.webp img/responsive/*.webp
           if git diff --cached --quiet; then
             echo "No optimized image changes to commit."
             exit 0
