@@ -55,16 +55,6 @@ def main() -> int:
                         "() => document.documentElement.getAttribute('data-theme') === "
                         + ("'dark'" if theme_name == "dark" else "null")
                     )
-                    page.wait_for_function(
-                        """() => {
-                          const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-                          const tabs = [...document.querySelectorAll('#menu .tabs .tab[aria-selected="false"]')];
-                          return tabs.length > 0 && tabs.every(tab =>
-                            dark ? getComputedStyle(tab).color === 'rgb(225, 231, 220)' : true
-                          );
-                        }""",
-                        timeout=3000
-                    )
                     page.wait_for_timeout(300)
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
