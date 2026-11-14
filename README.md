@@ -41,3 +41,5 @@ GitHub Pages: https://marcostavar24633-cyber.github.io/Penka/
 GitHub Actions запускает статические проверки HTML и локальных ресурсов, браузерные тесты адаптивности и доступности, а также оптимизацию WebP-изображений. После изменений сайта workflow Lighthouse проверяет опубликованную страницу по категориям Performance, Accessibility, Best Practices и SEO. Отчёты Lighthouse сохраняются в артефактах соответствующего запуска GitHub Actions.
 
 Проверки и отчёты: https://github.com/marcostavar24633-cyber/Penka/actions
+
+Запуск Lighthouse также доступен вручную через вкладку Actions.
