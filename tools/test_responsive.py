@@ -78,6 +78,8 @@ def main() -> int:
             # Mobile navigation: open, Escape, outside click, and link activation.
             page.set_viewport_size({"width": 390, "height": 850})
             page.reload(wait_until="domcontentloaded")
+            page.wait_for_timeout(400)
+            page.evaluate("window.scrollTo(0, 0)")
             toggle = page.locator(".menu-toggle")
             sheet = page.locator("#sheet")
             toggle.click()
