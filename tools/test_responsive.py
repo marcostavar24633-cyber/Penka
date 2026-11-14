@@ -15,7 +15,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 PORT = 8765
-WIDTHS = (320, 360, 375, 390, 420, 768, 1024)
+WIDTHS = (320, 360, 375, 390, 420, 768, 1024, 1440, 1920)
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
