@@ -23,9 +23,10 @@ def main():
                 variant = image.copy()
                 variant.thumbnail((width, width * 2), Image.Resampling.LANCZOS)
                 target = OUTPUT / f"{source.stem}-{width}.webp"
-                variant.save(target, "WEBP", quality=78, method=6)
+                quality = 70 if width <= 768 else 76
+                variant.save(target, "WEBP", quality=quality, method=6)
                 total += target.stat().st_size
-                print(f"{target.relative_to(ROOT)}: {target.stat().st_size:,} bytes ({variant.width}x{variant.height})")
+                print(f"{target.relative_to(ROOT)}: {target.stat().st_size:,} bytes ({variant.width}x{variant.height}, q={quality})")
     print(f"Responsive assets generated: {total:,} bytes")
 if __name__ == "__main__":
     main()
