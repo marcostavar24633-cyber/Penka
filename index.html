@@ -1451,7 +1451,12 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     sheet.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-    toggle.innerHTML = `<svg aria-hidden="true"><use href="#i-${open ? 'close' : 'menu'}"/></svg>`;
+    const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const iconUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    iconSvg.setAttribute('aria-hidden', 'true');
+    iconUse.setAttribute('href', open ? '#i-close' : '#i-menu');
+    iconSvg.append(iconUse);
+    toggle.replaceChildren(iconSvg);
     if (open) sheet.querySelector('a')?.focus();
     else if (returnFocus) toggle.focus();
   };
