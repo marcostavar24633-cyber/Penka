@@ -81,17 +81,27 @@ def main() -> int:
             toggle = page.locator(".menu-toggle")
             sheet = page.locator("#sheet")
             toggle.click()
-            if toggle.get_attribute("aria-expanded") != "true" or not sheet.evaluate("(el) => el.classList.contains('open')"):
+            try:
+                page.wait_for_function("""() => {
+                    const button = document.querySelector('.menu-toggle');
+                    return button?.getAttribute('aria-expanded') === 'true' &&
+                        document.querySelector('#sheet')?.classList.contains('open');
+                }""", timeout=3000)
+            except Exception:
                 failures.append("Mobile menu did not open or update aria-expanded")
             page.keyboard.press("Escape")
             if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
                 failures.append("Mobile menu did not close on Escape")
             toggle.click()
             page.locator("#sheet a[href='#about']").evaluate("(el) => el.click()")
-            if toggle.get_attribute("aria-expanded") != "false":
-                failures.append("Mobile menu did not close after navigation link activation")
-            if page.evaluate("document.activeElement === document.querySelector('.menu-toggle')") is False:
-                failures.append("Focus was not returned to the mobile menu toggle")
+            try:
+                page.wait_for_function("""() => {
+                    const button = document.querySelector('.menu-toggle');
+                    return button?.getAttribute('aria-expanded') === 'false' &&
+                        document.activeElement === button;
+                }""", timeout=3000)
+            except Exception:
+                failures.append("Mobile menu did not close or return focus after navigation link activation")
 
             # Menu tabs: pointer selection and arrow/Home/End keyboard behavior.
             coffee = page.locator("#t-coffee")
@@ -115,14 +125,20 @@ def main() -> int:
             # Theme toggle: visual state, accessible label, and persisted preference.
             theme = page.locator(".theme-toggle")
             theme.click()
-            if page.locator("html").get_attribute("data-theme") != "dark":
-                failures.append("Theme toggle did not enable dark theme")
-            if theme.get_attribute("aria-label") != "Включить светлую тему":
-                failures.append("Theme toggle accessible label did not update for dark theme")
+            try:
+                page.wait_for_function("""() => {
+                    const button = document.querySelector('.theme-toggle');
+                    return document.documentElement.getAttribute('data-theme') === 'dark' &&
+                        button?.getAttribute('aria-label') === 'Включить светлую тему';
+                }""", timeout=3000)
+            except Exception:
+                failures.append("Theme toggle did not apply dark theme or update its accessible label")
             if page.evaluate("localStorage.getItem('penka-theme')") != "dark":
                 failures.append("Dark theme preference was not persisted")
             theme.click()
-            if page.locator("html").get_attribute("data-theme") == "dark":
+            try:
+                page.wait_for_function("document.documentElement.getAttribute('data-theme') !== 'dark'", timeout=3000)
+            except Exception:
                 failures.append("Theme toggle did not return to light theme")
 
             # Gallery: open by keyboard, navigate, close, and restore focus.
