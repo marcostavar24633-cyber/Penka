@@ -1417,7 +1417,16 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
 (() => {
   // Theme toggle: light by default, choice remembered
   const root = document.documentElement, tbtn = document.querySelector('.theme-toggle'), themeMeta = document.querySelector('meta[name="theme-color"]');
-  const syncLabel = () => { const dark = root.getAttribute('data-theme') === 'dark'; tbtn.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему'); if(themeMeta) themeMeta.setAttribute('content', dark ? '#101916' : '#f3f1e9'); };
+  const syncLabel = () => {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    tbtn.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
+    if(themeMeta) themeMeta.setAttribute('content', dark ? '#101916' : '#f3f1e9');
+    // Keep inactive category labels readable even if a later component style overrides theme tokens.
+    document.querySelectorAll('#menu .tabs .tab[aria-selected="false"]').forEach(tab => {
+      if (dark) tab.style.color = '#e1e7dc';
+      else tab.style.removeProperty('color');
+    });
+  };
   syncLabel();
   tbtn.addEventListener('click', e => {
     const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
