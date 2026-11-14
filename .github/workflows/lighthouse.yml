@@ -2,7 +2,7 @@ name: PENKA Lighthouse audit
 
 on:
   workflow_run:
-    workflows: ["pages build and deployment"]
+    workflows: ["PENKA quality checks"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Wait for GitHub Pages publication
+        if: github.event_name == 'workflow_run'
+        run: sleep 60
       - name: Run Lighthouse on GitHub Pages
         uses: treosh/lighthouse-ci-action@v12
         with:
