@@ -1450,7 +1450,8 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
     toggle.innerHTML = `<svg aria-hidden="true"><use href="#i-${open ? 'close' : 'menu'}"/></svg>`;
-    if (!open && returnFocus) toggle.focus();
+    if (open) sheet.querySelector('a')?.focus();
+    else if (returnFocus) toggle.focus();
   };
   toggle.addEventListener('click', () => setSheet(!sheet.classList.contains('open')));
   sheet.addEventListener('click', e => {
@@ -1502,17 +1503,24 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   };
   const openGallery=(index)=>{
     galleryReturnFocus=document.activeElement;showGalleryImage(index);
-    if(!lightbox.open)lightbox.showModal();
+    if(!lightbox.open){
+      if(typeof lightbox.showModal === 'function') lightbox.showModal();
+      else { lightbox.setAttribute('open',''); lightbox.setAttribute('role','dialog'); lightbox.setAttribute('aria-modal','true'); }
+    }
     lightbox.querySelector('.lightbox-close').focus();
+  };
+  const closeGallery=()=>{
+    if(typeof lightbox.close === 'function') lightbox.close();
+    else { lightbox.removeAttribute('open'); lightbox.dispatchEvent(new Event('close')); }
   };
   galleryItems.forEach((figure,index)=>{
     figure.addEventListener('click',()=>openGallery(index));
     figure.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGallery(index)}});
   });
-  lightbox.querySelector('.lightbox-close').addEventListener('click',()=>lightbox.close());
+  lightbox.querySelector('.lightbox-close').addEventListener('click',closeGallery);
   lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>showGalleryImage(galleryIndex-1));
   lightbox.querySelector('.lightbox-next').addEventListener('click',()=>showGalleryImage(galleryIndex+1));
-  lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.close()});
+  lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeGallery()});
   lightbox.addEventListener('close',()=>galleryReturnFocus?.focus());
   lightbox.addEventListener('keydown',e=>{
     if(e.key==='ArrowLeft'){e.preventDefault();showGalleryImage(galleryIndex-1)}
