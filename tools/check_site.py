@@ -107,6 +107,10 @@ def main() -> int:
         # Verify same-page fragments before resolving the local path.
         if value.startswith("#"):
             fragment = value[1:]
+            # HTMLParser also sees JavaScript template literals in inline scripts.
+            # Dynamic fragments are resolved at runtime and cannot be checked statically.
+            if "${" in fragment:
+                continue
             if fragment and fragment not in parser.ids:
                 errors.append(f"Broken in-page anchor: {value}")
             continue
