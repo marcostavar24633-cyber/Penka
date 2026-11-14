@@ -52,22 +52,26 @@ def main() -> int:
                         page.evaluate("document.documentElement.setAttribute('data-theme', 'dark')")
                     else:
                         page.evaluate("document.documentElement.removeAttribute('data-theme')")
+                    page.wait_for_timeout(800)
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
                         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
                       });
                       return result.violations.map(v => ({
                         id: v.id, impact: v.impact, description: v.description,
-                        help: v.help, nodes: v.nodes.slice(0, 8).map(n => ({
+                        help: v.help, nodes: v.nodes.map(n => ({
                           target: n.target, summary: n.failureSummary
                         }))
                       }));
                     }""")
                     for violation in audit:
                         targets = ", ".join(str(node["target"]) for node in violation["nodes"])
+                        details = " | ".join(
+                            f"{node['target']}: {node['summary']}" for node in violation["nodes"]
+                        )
                         failures.append(
                             f"axe {theme_name} [{violation['impact']}] {violation['id']}: "
-                            f"{violation['help']} — {targets}"
+                            f"{violation['help']} — {targets} — {details}"
                         )
                     print(f"AXE {theme_name}: {len(audit)} WCAG violations")
                 page.evaluate("document.documentElement.removeAttribute('data-theme')")
