@@ -40,7 +40,9 @@ class SiteParser(HTMLParser):
         if tag == "meta" and data.get("name", "").lower() == "description":
             self.description = bool(data.get("content", "").strip())
         if tag == "img":
-            self.images.append((data.get("src", ""), data.get("alt")))
+            # The lightbox image receives its src only when a gallery item is opened.
+            if "lightbox-image" not in data.get("class", "").split():
+                self.images.append((data.get("src", ""), data.get("alt")))
         for attr in ("src", "href", "poster"):
             value = data.get(attr)
             if value:
