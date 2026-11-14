@@ -3,8 +3,11 @@ name: PENKA image optimization
 on:
   push:
     branches: [main]
-    paths-ignore:
+    paths:
       - "img/**"
+      - "tools/optimize_images.py"
+      - "tools/generate_responsive_images.py"
+      - ".github/workflows/image-optimization.yml"
   workflow_dispatch:
 
 permissions:
