@@ -95,7 +95,7 @@ def main() -> int:
             if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
                 failures.append("Mobile menu did not close on Escape")
             page.locator(".menu-toggle").evaluate("(el) => el.click()")
-            page.locator("#sheet a[href='#about']").evaluate("(el) => el.click())
+            page.locator("#sheet a[href='#about']").evaluate("(el) => el.click()")
             try:
                 page.wait_for_function("""() => {
                     const button = document.querySelector('.menu-toggle');
