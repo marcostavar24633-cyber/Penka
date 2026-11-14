@@ -104,14 +104,14 @@ def main() -> int:
 
     checked: set[str] = set()
     for tag, value in parser.references:
-        path = local_target(value)
-        if path is None:
-            continue
-        # Ignore same-page fragment-only references; verify the fragment below.
+        # Verify same-page fragments before resolving the local path.
         if value.startswith("#"):
             fragment = value[1:]
             if fragment and fragment not in parser.ids:
                 errors.append(f"Broken in-page anchor: {value}")
+            continue
+        path = local_target(value)
+        if path is None:
             continue
         if path in checked:
             continue
