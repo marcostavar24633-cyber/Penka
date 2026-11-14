@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "tools/test_hero_quality.py"
+      - "img/penka-hero.webp"
       - ".github/workflows/hero-quality.yml"
   workflow_dispatch:
 
