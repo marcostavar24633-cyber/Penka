@@ -1056,6 +1056,15 @@ section,.signature-strip,.penka-marquee,footer{min-width:0}
 .menu-foot p{color:#536158}
 footer .foot p,footer .disclaimer{color:#d5ddd4!important}
 :root[data-theme="dark"] .menu-foot p{color:#d2d9cf}
+
+/* Mobile performance: keep the hero focused and avoid downloading decorative collage images eagerly. */
+@media(max-width:760px){
+  .hero-image-stack{display:none}
+  .hero-frame{background-position:center 58%}
+}
+@media(max-width:420px){
+  .hero-frame{background-position:center 54%}
+}
 </style>
 </head>
 <body>
@@ -1144,9 +1153,9 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
         <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M52 4C40 10 26 18 10 32M10 32l2-10M10 32l10-2"/></svg>
       </div>
       <div class="hero-image-stack" aria-hidden="true">
-        <div class="hero-float hero-float-a"><img decoding="async" fetchpriority="low" src="img/penka-cappuccino.webp" alt=""></div>
-        <div class="hero-float hero-float-b"><img decoding="async" fetchpriority="low" src="img/penka-pastry.webp" alt=""></div>
-        <div class="hero-float hero-float-c"><img decoding="async" fetchpriority="low" src="img/penka-barista.webp" alt=""></div>
+        <div class="hero-float hero-float-a"><img decoding="async" loading="lazy" fetchpriority="low" src="img/penka-cappuccino.webp" alt=""></div>
+        <div class="hero-float hero-float-b"><img decoding="async" loading="lazy" fetchpriority="low" src="img/penka-pastry.webp" alt=""></div>
+        <div class="hero-float hero-float-c"><img decoding="async" loading="lazy" fetchpriority="low" src="img/penka-barista.webp" alt=""></div>
         <span class="hero-image-caption">coffee moments · 01—03</span>
       </div>
     </div>
