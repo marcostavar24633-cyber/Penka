@@ -24,5 +24,6 @@ jobs:
         with:
           urls: |
             https://marcostavar24633-cyber.github.io/Penka/
+          runs: 3
           uploadArtifacts: true
           temporaryPublicStorage: true
