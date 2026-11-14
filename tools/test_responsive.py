@@ -58,7 +58,11 @@ def main() -> int:
                           theme: document.documentElement.getAttribute('data-theme'),
                           tabColor: getComputedStyle(document.querySelector('#t-other')).color,
                           tabBg: getComputedStyle(document.querySelector('#t-other')).backgroundColor,
-                          selectorMatches: document.querySelector(':root[data-theme="dark"] #menu .tabs .tab') !== null
+                          selectorMatches: document.querySelector(':root[data-theme="dark"] #menu .tabs .tab') !== null,
+                          inlineStyle: document.querySelector('#t-other').getAttribute('style'),
+                          matchedRules: [...document.styleSheets].flatMap(sheet => {
+                            try { return [...sheet.cssRules].filter(rule => rule.selectorText && rule.selectorText.includes('#menu .tabs .tab')).map(rule => ({selector:rule.selectorText, color:rule.style.color, important:rule.style.getPropertyPriority('color'), media:rule.parentRule?.conditionText || ''})); } catch(e) { return []; }
+                          })
                         })""")
                         print(f"DARK THEME DEBUG: {debug}")
                     audit = page.evaluate("""async () => {
