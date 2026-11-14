@@ -60,9 +60,20 @@ def main() -> int:
                           tabBg: getComputedStyle(document.querySelector('#t-other')).backgroundColor,
                           selectorMatches: document.querySelector(':root[data-theme="dark"] #menu .tabs .tab') !== null,
                           inlineStyle: document.querySelector('#t-other').getAttribute('style'),
-                          matchedRules: [...document.styleSheets].flatMap(sheet => {
-                            try { return [...sheet.cssRules].filter(rule => rule.selectorText && rule.selectorText.includes('#menu .tabs .tab')).map(rule => ({selector:rule.selectorText, color:rule.style.color, important:rule.style.getPropertyPriority('color'), media:rule.parentRule?.conditionText || ''})); } catch(e) { return []; }
-                          })
+                          matchedRules: (() => {
+                            const el = document.querySelector('#t-other');
+                            const out = [];
+                            const walk = (rules, context='') => [...rules].forEach(rule => {
+                              if (rule.cssRules) walk(rule.cssRules, context + (rule.conditionText || rule.cssText.slice(0,80)));
+                              else if (rule.selectorText) {
+                                try { if (el.matches(rule.selectorText) && rule.style.color) out.push({selector:rule.selectorText,color:rule.style.color,important:rule.style.getPropertyPriority('color'),context}); } catch(e) {}
+                              }
+                            });
+                            [...document.styleSheets].forEach(sheet => { try { walk(sheet.cssRules); } catch(e) {} });
+                            return out;
+                          })(),
+                          rootCoffee: getComputedStyle(document.documentElement).getPropertyValue('--coffee'),
+                          rootStyle: document.documentElement.getAttribute('style')
                         })""")
                         print(f"DARK THEME DEBUG: {debug}")
                     audit = page.evaluate("""async () => {
