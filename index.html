@@ -787,14 +787,6 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
 }
 
 
-/* ===== PENKA editorial expansion ===== */
-.preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--milk);color:var(--graphite);transition:clip-path .9s cubic-bezier(.77,0,.18,1),visibility .9s}
-.preloader.is-done{clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none}
-.preloader-inner{display:grid;justify-items:center;gap:12px}
-.preloader-mark{font:600 clamp(42px,8vw,76px)/1 var(--font-head);letter-spacing:.12em}
-.preloader-mark:after{content:"";display:block;height:1px;width:100%;margin-top:14px;background:var(--terra);transform-origin:left;animation:penka-line 1s ease both}
-.preloader-sub{font-size:10px;letter-spacing:.28em;color:var(--muted)}
-@keyframes penka-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .penka-marquee{overflow:hidden;background:var(--graphite);color:var(--on-dark);padding:15px 0}
 .penka-marquee-track{display:flex;width:max-content;animation:penka-marquee 34s linear infinite}
 .penka-marquee span{padding:0 24px;white-space:nowrap;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
@@ -1128,7 +1120,6 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   <symbol id="logo-cup" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="19" style="fill:var(--terra)"/><path d="M11 16h16v5a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7z" style="fill:var(--onaccent)"/><path d="M27 17.5h1.5a3 3 0 0 1 0 6H26.5" style="stroke:var(--onaccent)" stroke-width="2"/><path d="M14 16c1.5-1.6 3.5-1.6 5 0s3.5 1.6 5 0" style="stroke:var(--terra)" stroke-width="1.6"/></symbol>
 </svg>
 
-<div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-inner"><div class="preloader-mark">PENKA</div><div class="preloader-sub">COFFEE · BAKERY · DESIGN</div></div></div>
 <a class="sr-only" href="#main">Перейти к содержимому</a>
 
 <div class="infobar" role="note">
@@ -1420,9 +1411,6 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   <a class="btn btn-primary" href="#about">О проекте</a>
 </div>
 
-<script id="preloader-script">
-(() => { const loader=document.getElementById("preloader"); if(loader){const done=()=>loader.classList.add("is-done"); if(matchMedia("(prefers-reduced-motion: reduce)").matches) done(); else window.addEventListener("load",()=>setTimeout(done,450),{once:true}); setTimeout(done,1800); } })();
-</script>
 <script>
 (() => {
   // Theme toggle: light by default, choice remembered
