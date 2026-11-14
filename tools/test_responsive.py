@@ -75,6 +75,75 @@ def main() -> int:
 
                 print(f"PASS {width}px: viewport={metrics['viewport']} document={metrics['document']} body={metrics['body']}")
 
+            # Mobile navigation: open, Escape, outside click, and link activation.
+            page.set_viewport_size({"width": 390, "height": 850})
+            page.reload(wait_until="domcontentloaded")
+            toggle = page.locator(".menu-toggle")
+            sheet = page.locator("#sheet")
+            toggle.click()
+            if toggle.get_attribute("aria-expanded") != "true" or not sheet.evaluate("(el) => el.classList.contains('open')"):
+                failures.append("Mobile menu did not open or update aria-expanded")
+            page.keyboard.press("Escape")
+            if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
+                failures.append("Mobile menu did not close on Escape")
+            toggle.click()
+            page.locator("#sheet a[href='#about']").click()
+            if toggle.get_attribute("aria-expanded") != "false":
+                failures.append("Mobile menu did not close after navigation link activation")
+            if page.evaluate("document.activeElement === document.querySelector('.menu-toggle')") is False:
+                failures.append("Focus was not returned to the mobile menu toggle")
+
+            # Menu tabs: pointer selection and arrow/Home/End keyboard behavior.
+            coffee = page.locator("#t-coffee")
+            tea = page.locator("#t-tea")
+            bake = page.locator("#t-bake")
+            dessert = page.locator("#t-dessert")
+            tea.click()
+            if tea.get_attribute("aria-selected") != "true" or not page.locator("#p-tea").is_visible():
+                failures.append("Menu tab click did not activate the tea panel")
+            tea.focus()
+            page.keyboard.press("ArrowRight")
+            if bake.get_attribute("aria-selected") != "true" or page.evaluate("document.activeElement.id") != "t-bake":
+                failures.append("ArrowRight did not move focus and selection to the next menu tab")
+            page.keyboard.press("End")
+            if dessert.get_attribute("aria-selected") != "true":
+                failures.append("End did not select the last menu tab")
+            page.keyboard.press("Home")
+            if coffee.get_attribute("aria-selected") != "true":
+                failures.append("Home did not select the first menu tab")
+
+            # Theme toggle: visual state, accessible label, and persisted preference.
+            theme = page.locator(".theme-toggle")
+            theme.click()
+            if page.locator("html").get_attribute("data-theme") != "dark":
+                failures.append("Theme toggle did not enable dark theme")
+            if theme.get_attribute("aria-label") != "Включить светлую тему":
+                failures.append("Theme toggle accessible label did not update for dark theme")
+            if page.evaluate("localStorage.getItem('penka-theme')") != "dark":
+                failures.append("Dark theme preference was not persisted")
+            theme.click()
+            if page.locator("html").get_attribute("data-theme") == "dark":
+                failures.append("Theme toggle did not return to light theme")
+
+            # Gallery: open by keyboard, navigate, close, and restore focus.
+            first_gallery_item = page.locator(".gallery .g").first
+            first_gallery_item.focus()
+            page.keyboard.press("Enter")
+            lightbox = page.locator(".lightbox")
+            if not lightbox.evaluate("(el) => el.open"):
+                failures.append("Gallery did not open from keyboard activation")
+            first_caption = page.locator(".lightbox-caption").inner_text()
+            page.keyboard.press("ArrowRight")
+            second_caption = page.locator(".lightbox-caption").inner_text()
+            if first_caption == second_caption:
+                failures.append("Gallery ArrowRight did not advance to a different image")
+            page.keyboard.press("Escape")
+            if lightbox.evaluate("(el) => el.open"):
+                failures.append("Gallery did not close on Escape")
+            if page.evaluate("document.activeElement === document.querySelector('.gallery .g')") is False:
+                failures.append("Gallery did not restore focus to the activating item")
+
+            print("PASS interactions: mobile navigation, menu tabs, theme toggle, gallery keyboard controls")
             browser.close()
     finally:
         server.shutdown()
