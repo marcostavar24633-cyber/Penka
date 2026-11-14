@@ -24,7 +24,7 @@
 - Семантические HTML, CSS и vanilla JavaScript.
 - Без сборщика, платных API, отдельного сервера и базы данных.
 - Оптимизированные локальные WebP-изображения в `img/`.
-- Шрифты Cormorant Garamond, Manrope и Playfair Display через Google Fonts.
+- Шрифты Cormorant Garamond, Manrope, Marck Script и Playfair Display через Google Fonts.
 
 ## Публикация
 
