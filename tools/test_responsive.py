@@ -94,16 +94,17 @@ def main() -> int:
             page.keyboard.press("Escape")
             if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
                 failures.append("Mobile menu did not close on Escape")
+            if page.evaluate("document.activeElement === document.querySelector('.menu-toggle')") is False:
+                failures.append("Mobile menu did not return focus to its toggle after Escape")
             page.locator(".menu-toggle").evaluate("(el) => el.click()")
             page.locator("#sheet a[href='#about']").evaluate("(el) => el.click()")
             try:
                 page.wait_for_function("""() => {
                     const button = document.querySelector('.menu-toggle');
-                    return button?.getAttribute('aria-expanded') === 'false' &&
-                        document.activeElement === button;
+                    return button?.getAttribute('aria-expanded') === 'false';
                 }""", timeout=3000)
             except Exception:
-                failures.append("Mobile menu did not close or return focus after navigation link activation")
+                failures.append("Mobile menu did not close after navigation link activation")
 
             # Menu tabs: pointer selection and arrow/Home/End keyboard behavior.
             coffee = page.locator("#t-coffee")
