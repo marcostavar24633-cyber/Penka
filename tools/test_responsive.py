@@ -53,29 +53,6 @@ def main() -> int:
                     else:
                         page.evaluate("document.documentElement.removeAttribute('data-theme')")
                     page.wait_for_timeout(800)
-                    if theme_name == "dark":
-                        debug = page.evaluate("""() => ({
-                          theme: document.documentElement.getAttribute('data-theme'),
-                          tabColor: getComputedStyle(document.querySelector('#t-other')).color,
-                          tabBg: getComputedStyle(document.querySelector('#t-other')).backgroundColor,
-                          selectorMatches: document.querySelector(':root[data-theme="dark"] #menu .tabs .tab') !== null,
-                          inlineStyle: document.querySelector('#t-other').getAttribute('style'),
-                          matchedRules: (() => {
-                            const el = document.querySelector('#t-other');
-                            const out = [];
-                            const walk = (rules, context='') => [...rules].forEach(rule => {
-                              if (rule.cssRules) walk(rule.cssRules, context + (rule.conditionText || rule.cssText.slice(0,80)));
-                              else if (rule.selectorText) {
-                                try { if (el.matches(rule.selectorText) && rule.style.color) out.push({selector:rule.selectorText,color:rule.style.color,important:rule.style.getPropertyPriority('color'),context}); } catch(e) {}
-                              }
-                            });
-                            [...document.styleSheets].forEach(sheet => { try { walk(sheet.cssRules); } catch(e) {} });
-                            return out;
-                          })(),
-                          rootCoffee: getComputedStyle(document.documentElement).getPropertyValue('--coffee'),
-                          rootStyle: document.documentElement.getAttribute('style')
-                        })""")
-                        print(f"DARK THEME DEBUG: {debug}")
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
                         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
