@@ -1061,6 +1061,12 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   .hero-frame{background-position:center 54%}
 }
 
+/* WCAG: inactive menu tabs need readable text in dark mode. Disable color interpolation. */
+:root[data-theme="dark"] #menu .tabs .tab[aria-selected="false"]{
+  color:#e1e7dc!important;
+  transition:none!important;
+}
+
 /* Mobile performance: keep the editorial look while reducing continuous paint work. */
 @media (max-width:760px){
   .js [data-fade], [data-fade]{
