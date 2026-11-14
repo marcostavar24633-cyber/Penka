@@ -56,15 +56,6 @@ def main() -> int:
                         + ("'dark'" if theme_name == "dark" else "null")
                     )
                     page.wait_for_timeout(300)
-                    if theme_name == "dark":
-                        print("DARK TAB STATE:", page.evaluate("""() => ({
-                          theme: document.documentElement.getAttribute('data-theme'),
-                          tabs: [...document.querySelectorAll('#menu .tabs .tab')].map(tab => ({
-                            id: tab.id, selected: tab.getAttribute('aria-selected'),
-                            inline: tab.style.color, computed: getComputedStyle(tab).color,
-                            bg: getComputedStyle(tab).backgroundColor
-                          }))
-                        })"""))
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
                         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
