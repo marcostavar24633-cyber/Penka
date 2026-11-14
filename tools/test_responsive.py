@@ -41,6 +41,37 @@ def main() -> int:
                 failures.append(f"Page did not load successfully: {response.status if response else 'no response'}")
             page.wait_for_timeout(300)
 
+            # Automated WCAG 2.2 AA audit with axe-core in both color themes.
+            axe_path = ROOT / "node_modules" / "axe-core" / "axe.min.js"
+            if not axe_path.exists():
+                failures.append("axe-core is missing; accessibility audit could not run")
+            else:
+                page.add_script_tag(path=str(axe_path))
+                for theme_name in ("light", "dark"):
+                    if theme_name == "dark":
+                        page.evaluate("document.documentElement.setAttribute('data-theme', 'dark')")
+                    else:
+                        page.evaluate("document.documentElement.removeAttribute('data-theme')")
+                    audit = page.evaluate("""async () => {
+                      const result = await axe.run(document, {
+                        runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
+                      });
+                      return result.violations.map(v => ({
+                        id: v.id, impact: v.impact, description: v.description,
+                        help: v.help, nodes: v.nodes.slice(0, 8).map(n => ({
+                          target: n.target, summary: n.failureSummary
+                        }))
+                      }));
+                    }""")
+                    for violation in audit:
+                        targets = ", ".join(str(node["target"]) for node in violation["nodes"])
+                        failures.append(
+                            f"axe {theme_name} [{violation['impact']}] {violation['id']}: "
+                            f"{violation['help']} — {targets}"
+                        )
+                    print(f"AXE {theme_name}: {len(audit)} WCAG violations")
+                page.evaluate("document.documentElement.removeAttribute('data-theme')")
+
             for width in WIDTHS:
                 page.set_viewport_size({"width": width, "height": 850})
                 page.wait_for_timeout(100)
