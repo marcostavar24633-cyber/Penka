@@ -1496,6 +1496,7 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   // Accessible full-screen gallery
   const galleryItems=[...document.querySelectorAll('.gallery .g')];
   const lightbox=document.querySelector('.lightbox'), lightboxImage=lightbox.querySelector('.lightbox-image'), lightboxCaption=lightbox.querySelector('.lightbox-caption');
+  const nativeDialog = typeof lightbox.showModal === 'function';
   let galleryIndex=0, galleryReturnFocus=null;
   const showGalleryImage=(index)=>{
     galleryIndex=(index+galleryItems.length)%galleryItems.length;
@@ -1525,6 +1526,13 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeGallery()});
   lightbox.addEventListener('close',()=>galleryReturnFocus?.focus());
   lightbox.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && !nativeDialog){e.preventDefault();closeGallery();return}
+    if(e.key==='Tab' && !nativeDialog){
+      const focusable=[...lightbox.querySelectorAll('button:not([disabled])')];
+      const first=focusable[0], last=focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus()}
+    }
     if(e.key==='ArrowLeft'){e.preventDefault();showGalleryImage(galleryIndex-1)}
     if(e.key==='ArrowRight'){e.preventDefault();showGalleryImage(galleryIndex+1)}
   });
