@@ -203,6 +203,9 @@ p{margin:0}
 .portfolio-card p{color:var(--coffee-2)}
 .portfolio-note{margin-top:22px;padding:16px 20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--muted);font-size:14px}
 @media(max-width:760px){.portfolio-grid{grid-template-columns:1fr}}
+/* Off-screen sections: defer rendering work until they approach the viewport. */
+main>section:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 760px}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   [data-fade]{opacity:1;filter:none;transform:none}
