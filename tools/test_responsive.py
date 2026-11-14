@@ -155,6 +155,19 @@ def main() -> int:
             except Exception:
                 failures.append("Mobile menu did not close after navigation link activation")
 
+            # Mobile navigation: outside click and desktop breakpoint cleanup.
+            page.locator(".menu-toggle").evaluate("(el) => el.click()")
+            page.locator("h1").click(position={"x": 5, "y": 5})
+            if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
+                failures.append("Mobile menu did not close after an outside click")
+            page.locator(".menu-toggle").evaluate("(el) => el.click()")
+            page.set_viewport_size({"width": 1024, "height": 850})
+            page.wait_for_timeout(150)
+            if toggle.get_attribute("aria-expanded") != "false" or sheet.evaluate("(el) => el.classList.contains('open')"):
+                failures.append("Mobile menu remained open after switching to desktop width")
+            page.set_viewport_size({"width": 390, "height": 850})
+            page.wait_for_timeout(100)
+
             # Menu tabs: pointer selection and arrow/Home/End keyboard behavior.
             coffee = page.locator("#t-coffee")
             tea = page.locator("#t-tea")
@@ -205,13 +218,22 @@ def main() -> int:
             second_caption = page.locator(".lightbox-caption").inner_text()
             if first_caption == second_caption:
                 failures.append("Gallery ArrowRight did not advance to a different image")
-            page.keyboard.press("Escape")
+            page.keyboard.press("ArrowLeft")
+            if page.locator(".lightbox-caption").inner_text() != first_caption:
+                failures.append("Gallery ArrowLeft did not return to the previous image")
+            page.locator(".lightbox-next").click()
+            if page.locator(".lightbox-caption").inner_text() == first_caption:
+                failures.append("Gallery next button did not advance to another image")
+            page.locator(".lightbox-prev").click()
+            if page.locator(".lightbox-caption").inner_text() != first_caption:
+                failures.append("Gallery previous button did not return to the first image")
+            page.locator(".lightbox-close").click()
             if lightbox.evaluate("(el) => el.open"):
-                failures.append("Gallery did not close on Escape")
+                failures.append("Gallery close button did not dismiss the lightbox")
             if page.evaluate("document.activeElement === document.querySelector('.gallery .g')") is False:
                 failures.append("Gallery did not restore focus to the activating item")
 
-            print("PASS interactions: mobile navigation, menu tabs, theme toggle, gallery keyboard controls")
+            print("PASS interactions: mobile navigation, menu tabs, theme toggle, gallery keyboard and button controls")
             browser.close()
     finally:
         server.shutdown()
