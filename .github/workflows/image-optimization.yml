@@ -34,7 +34,7 @@ jobs:
         run: python -m pip install --upgrade Pillow
 
       - name: Generate optimized WebP files
-        run: python tools/optimize_images.py --quality 82 --max-width 2000 --max-height 2000
+        run: python tools/optimize_images.py --quality 78 --max-width 1800 --max-height 1800
 
       - name: Replace assets only when files are smaller
         run: |
