@@ -55,6 +55,16 @@ def main() -> int:
                         "() => document.documentElement.getAttribute('data-theme') === "
                         + ("'dark'" if theme_name == "dark" else "null")
                     )
+                    page.wait_for_function(
+                        """() => {
+                          const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+                          const tabs = [...document.querySelectorAll('#menu .tabs .tab[aria-selected="false"]')];
+                          return tabs.length > 0 && tabs.every(tab =>
+                            dark ? getComputedStyle(tab).color === 'rgb(225, 231, 220)' : true
+                          );
+                        }""",
+                        timeout=3000
+                    )
                     page.wait_for_timeout(300)
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
@@ -77,7 +87,9 @@ def main() -> int:
                             f"{violation['help']} — {targets} — {details}"
                         )
                     print(f"AXE {theme_name}: {len(audit)} WCAG violations")
-                page.evaluate("document.documentElement.removeAttribute('data-theme')")
+                if page.evaluate("document.documentElement.getAttribute('data-theme') === 'dark'"):
+                    page.locator(".theme-toggle").click()
+                    page.wait_for_function("document.documentElement.getAttribute('data-theme') !== 'dark'")
 
             for width in WIDTHS:
                 page.set_viewport_size({"width": width, "height": 850})
