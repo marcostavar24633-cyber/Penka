@@ -49,10 +49,14 @@ def main() -> int:
                 page.add_script_tag(path=str(axe_path))
                 for theme_name in ("light", "dark"):
                     if theme_name == "dark":
-                        page.evaluate("document.documentElement.setAttribute('data-theme', 'dark')")
+                        page.locator(".theme-toggle").click()
                     else:
-                        page.evaluate("document.documentElement.removeAttribute('data-theme')")
-                    page.wait_for_timeout(800)
+                        page.locator(".theme-toggle").click()
+                    page.wait_for_function(
+                        "() => document.documentElement.getAttribute('data-theme') === "
+                        + ("'dark'" if theme_name == "dark" else "null")
+                    )
+                    page.wait_for_timeout(300)
                     audit = page.evaluate("""async () => {
                       const result = await axe.run(document, {
                         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }
