@@ -1099,6 +1099,24 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
   }
 }
 
+
+/* Keep editorial pillars text readable on the light canvas and in dark mode. */
+:root:not([data-theme="dark"]) .pillars-section .eyebrow{color:#765b32}
+:root:not([data-theme="dark"]) .pillars-section .section-head p{color:#46534b}
+:root:not([data-theme="dark"]) .pillars-section .text-gold{
+  background:none;
+  color:#765b32;
+  -webkit-text-fill-color:#765b32;
+  animation:none;
+}
+:root[data-theme="dark"] .pillars-section .eyebrow{color:#e5d2a4}
+:root[data-theme="dark"] .pillars-section .section-head p{color:#c5cdc1}
+:root[data-theme="dark"] .pillars-section .text-gold{
+  background:none;
+  color:#e5d2a4;
+  -webkit-text-fill-color:#e5d2a4;
+  animation:none;
+}
 </style>
 </head>
 <body>
@@ -1211,7 +1229,7 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     <span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span><span>COFFEE CULTURE <i>✳</i> FRESH BAKERY <i>✳</i> GOOD MOOD <i>✳</i> EVERYDAY MOMENTS <i>✳</i> PENKA</span>
   </div>
 </div>
-<section aria-labelledby="pillars-title">
+<section class="pillars-section" aria-labelledby="pillars-title">
   <div class="container">
     <div class="section-head"><div><span class="eyebrow" data-fade>THE PENKA WAY</span><h2 id="pillars-title" data-fade>Три стороны <em class="text-gold">одного настроения.</em></h2></div><p data-fade>Кофе, выпечка и пространство — детали, из которых складывается атмосфера PENKA.</p></div>
     <div class="pillars">
