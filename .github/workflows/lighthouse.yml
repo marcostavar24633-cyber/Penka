@@ -11,6 +11,7 @@ on:
       - "img/**"
       - "robots.txt"
       - "sitemap.xml"
+      - "README.md"
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
