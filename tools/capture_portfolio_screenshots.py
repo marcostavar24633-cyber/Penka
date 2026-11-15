@@ -1,5 +1,5 @@
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 URL = "https://marcostavar24633-cyber.github.io/Penka/"
 OUT = Path("artifacts/portfolio")
@@ -12,27 +12,44 @@ VIEWPORTS = [
 ]
 
 def prepare_page(page):
-    page.goto(URL, wait_until="networkidle", timeout=90000)
-    page.evaluate("document.fonts.ready")
-    # Visit the full document so native lazy-loaded images are requested.
+    response = page.goto(URL, wait_until="domcontentloaded", timeout=90000)
+    if response is None or not response.ok:
+        raise RuntimeError(f"Published site did not respond successfully: {response.status if response else 'no response'}")
+    page.locator("body").wait_for(state="visible", timeout=15000)
+    try:
+        page.evaluate("""() => Promise.race([
+          document.fonts.ready.then(() => true),
+          new Promise(resolve => setTimeout(() => resolve(false), 15000))
+        ])""")
+    except PlaywrightTimeoutError:
+        print("Font readiness timed out; continuing with available fonts.", flush=True)
+
+    # Scroll through the page to trigger native lazy loading.
     page.evaluate("""async () => {
-      const step = Math.max(400, window.innerHeight * 0.8);
-      for (let y = 0; y < document.body.scrollHeight; y += step) {
+      const step = Math.max(350, window.innerHeight * 0.7);
+      const maxY = document.documentElement.scrollHeight;
+      for (let y = 0; y < maxY; y += step) {
         window.scrollTo(0, y);
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 120));
       }
       window.scrollTo(0, 0);
     }""")
-    page.wait_for_timeout(1200)
+
+    # Never wait indefinitely for a failed or deferred image.
     page.evaluate("""async () => {
-      await Promise.all(Array.from(document.images, image => {
+      const images = Array.from(document.images);
+      for (const image of images) image.loading = "eager";
+      await Promise.all(images.map(image => {
         if (image.complete) return Promise.resolve();
         return new Promise(resolve => {
-          image.addEventListener("load", resolve, { once: true });
-          image.addEventListener("error", resolve, { once: true });
+          const finish = () => resolve();
+          image.addEventListener("load", finish, { once: true });
+          image.addEventListener("error", finish, { once: true });
+          setTimeout(finish, 10000);
         });
       }));
     }""")
+    page.wait_for_timeout(500)
 
 def main():
     with sync_playwright() as playwright:
@@ -43,12 +60,13 @@ def main():
                 device_scale_factor=1,
                 reduced_motion="reduce",
             )
+            print(f"Opening {name} viewport ({width}x{height})", flush=True)
             prepare_page(page)
-            page.screenshot(path=str(OUT / f"penka-{name}-full.png"), full_page=True)
+            page.screenshot(path=str(OUT / f"penka-{name}-full.png"), full_page=True, animations="disabled")
             page.evaluate("window.scrollTo(0, 0)")
-            page.wait_for_timeout(250)
-            page.screenshot(path=str(OUT / f"penka-{name}-hero.png"), full_page=False)
-            print(f"Captured {name}: {width}x{height}")
+            page.wait_for_timeout(200)
+            page.screenshot(path=str(OUT / f"penka-{name}-hero.png"), full_page=False, animations="disabled")
+            print(f"Captured {name}: {width}x{height}", flush=True)
             page.close()
         browser.close()
 
