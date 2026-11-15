@@ -3,10 +3,12 @@ name: PENKA portfolio screenshots
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "portfolio/screenshots/**"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   capture:
@@ -39,6 +41,19 @@ jobs:
           exit 1
       - name: Capture desktop, tablet and mobile screenshots
         run: python tools/capture_portfolio_screenshots.py
+      - name: Commit portfolio screenshots to repository
+        run: |
+          mkdir -p portfolio/screenshots
+          cp artifacts/portfolio/*.png portfolio/screenshots/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio/screenshots/
+          if git diff --cached --quiet; then
+            echo "Portfolio screenshots are already up to date."
+          else
+            git commit -m "docs: refresh responsive portfolio screenshots"
+            git push
+          fi
       - name: Upload portfolio screenshots
         uses: actions/upload-artifact@v4
         with:
