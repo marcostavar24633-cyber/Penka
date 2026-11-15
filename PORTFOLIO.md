@@ -38,16 +38,16 @@ PENKA — визуальная концепция современной коф�
 
 ## Результаты проверок
 
-В трёх сохранённых Lighthouse-прогонах (запуск [43698951778](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43698951778)) зафиксированы:
+В трёх сохранённых Lighthouse-прогонах (запуск [43699767208](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43699767208)) все четыре категории получили 100 баллов:
 
-| Категория | Результаты |
+| Категория | Результат |
 |---|---:|
-| Performance | 84–99 |
+| Performance | 100 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
 
-Один из трёх прогонов Performance показал 84, два других — 99. Результаты относятся к конкретным прогонам и могут меняться в зависимости от устройства и сети. Автоматические проверки: [GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions).
+Дополнительные показатели этих прогонов: First Contentful Paint — 1,1 с; Largest Contentful Paint — 1,3–1,4 с; Total Blocking Time — 0 мс; Cumulative Layout Shift — 0. Это результаты трёх конкретных автоматизированных запусков, а не гарантия одинаковых показателей на любом устройстве и соединении. Автоматические проверки: [GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions).
 
 ## Короткое описание
 
