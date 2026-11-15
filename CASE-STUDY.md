@@ -66,22 +66,22 @@ PENKA — визуальная концепция современной коф�
 
 ## 7. Результаты технического аудита
 
-По трём сохранённым отчётам Lighthouse (запуск [43698951778](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43698951778)) получены следующие значения:
+По трём сохранённым отчётам Lighthouse (запуск [43699767208](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43699767208)) получены следующие значения:
 
-| Категория | Результаты |
+| Категория | Результат |
 |---|---:|
-| Performance | 84–99 |
+| Performance | 100 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
 
-Дополнительные показатели в этих отчётах:
-- First Contentful Paint: 1,7–3,4 с.
-- Largest Contentful Paint: 1,7–3,5 с.
+Дополнительные показатели во всех трёх отчётах:
+- First Contentful Paint: 1,1 с.
+- Largest Contentful Paint: 1,3–1,4 с.
 - Total Blocking Time: 0 мс.
 - Cumulative Layout Shift: 0.
 
-Это результаты конкретных автоматизированных прогонов: один запуск Performance — 84, два других — 99. Это не гарантия одинаковых показателей на каждом устройстве и при любом соединении. Отчёты и последующие проверки доступны во вкладке [GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions).
+Это результаты трёх конкретных автоматизированных прогонов, а не гарантия одинаковых показателей на каждом устройстве и при любом соединении. Отчёты и последующие проверки доступны во вкладке [GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions).
 
 ## 8. Визуальная презентация
 
