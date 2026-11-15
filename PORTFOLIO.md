@@ -28,9 +28,9 @@ PENKA — визуальная концепция современной коф�
 
 | Desktop · 1440 px | Tablet · 768 px | Mobile · 390 px |
 |---|---|---|
-| ![Desktop](../.github/portfolio/screenshots/penka-desktop-hero.png) | ![Tablet](../.github/portfolio/screenshots/penka-tablet-hero.png) | ![Mobile](../.github/portfolio/screenshots/penka-mobile-hero.png) |
+| ![Desktop](.github/portfolio/screenshots/penka-desktop-hero.png) | ![Tablet](.github/portfolio/screenshots/penka-tablet-hero.png) | ![Mobile](.github/portfolio/screenshots/penka-mobile-hero.png) |
 
-Полные страницы: [Desktop](../.github/portfolio/screenshots/penka-desktop-full.png) · [Tablet](../.github/portfolio/screenshots/penka-tablet-full.png) · [Mobile](../.github/portfolio/screenshots/penka-mobile-full.png).
+Полные страницы: [Desktop](.github/portfolio/screenshots/penka-desktop-full.png) · [Tablet](.github/portfolio/screenshots/penka-tablet-full.png) · [Mobile](.github/portfolio/screenshots/penka-mobile-full.png).
 
 ## Технологии
 
