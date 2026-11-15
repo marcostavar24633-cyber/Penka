@@ -49,7 +49,18 @@ def prepare_page(page):
         });
       }));
     }""")
-    page.wait_for_timeout(500)
+    # The site defers off-screen sections with content-visibility and scroll-reveal.
+    # For a complete portfolio capture, reveal the existing content without changing
+    # the published page or its normal visitor behavior.
+    page.evaluate("""() => {
+      document.querySelectorAll("main > section").forEach(section => {
+        section.style.contentVisibility = "visible";
+      });
+      document.querySelectorAll("[data-fade]").forEach(element => {
+        element.classList.add("in");
+      });
+    }""")
+    page.wait_for_timeout(900)
 
 def main():
     with sync_playwright() as playwright:
