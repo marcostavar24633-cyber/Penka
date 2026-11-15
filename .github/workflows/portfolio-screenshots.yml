@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - "portfolio/screenshots/**"
+      - ".github/portfolio/screenshots/**"
   workflow_dispatch:
 
 permissions:
@@ -47,11 +47,12 @@ jobs:
         run: python tools/capture_portfolio_screenshots.py
       - name: Commit portfolio screenshots to repository
         run: |
-          mkdir -p portfolio/screenshots
-          cp artifacts/portfolio/*.png portfolio/screenshots/
+          mkdir -p .github/portfolio/screenshots
+          cp artifacts/portfolio/*.png .github/portfolio/screenshots/
+          if [ -d portfolio/screenshots ]; then git rm -r portfolio/screenshots; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add portfolio/screenshots/
+          git add .github/portfolio/screenshots/
           if git diff --cached --quiet; then
             echo "Portfolio screenshots are already up to date."
           else
