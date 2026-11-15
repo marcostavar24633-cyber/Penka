@@ -229,10 +229,25 @@ def main() -> int:
 
             # Gallery: visible captions must match the controls' accessible names.
             gallery_labels = page.locator(".gallery .g").evaluate_all(
-                "els => els.map(el => ({label: el.getAttribute('aria-label'), caption: el.querySelector('figcaption')?.textContent?.trim()}))"
+                """els => els.map(el => {
+                  const caption = el.querySelector('figcaption');
+                  const labelledBy = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                  const referencedText = labelledBy.map(id => document.getElementById(id)?.textContent?.trim() || '').join(' ').trim();
+                  return {
+                    caption: caption?.textContent?.trim(),
+                    captionId: caption?.id,
+                    labelledBy,
+                    referencedText
+                  };
+                })"""
             )
             for item in gallery_labels:
-                if not item["label"] or item["label"] != item["caption"]:
+                if (
+                    not item["caption"]
+                    or not item["captionId"]
+                    or item["captionId"] not in item["labelledBy"]
+                    or item["referencedText"] != item["caption"]
+                ):
                     failures.append(
                         f"Gallery accessible name does not match visible caption: {item}"
                     )
