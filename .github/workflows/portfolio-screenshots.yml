@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: penka-portfolio-screenshots-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   capture:
     name: Capture published responsive layouts
@@ -52,6 +56,7 @@ jobs:
             echo "Portfolio screenshots are already up to date."
           else
             git commit -m "docs: refresh responsive portfolio screenshots"
+            git pull --rebase origin main
             git push
           fi
       - name: Upload portfolio screenshots
