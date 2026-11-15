@@ -232,10 +232,12 @@ def main() -> int:
                 """els => els.map(el => {
                   const button = el.querySelector('.gallery-trigger');
                   const caption = el.querySelector('.gallery-caption');
-                  const accessibleLabel = button?.getAttribute('aria-label') || '';
+                  const labelledBy = (button?.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                  const accessibleLabel = labelledBy.map(id => document.getElementById(id)?.textContent?.trim() || '').join(' ').trim();
                   return {
                     caption: caption?.textContent?.trim(),
                     captionId: caption?.id,
+                    labelledBy,
                     accessibleLabel,
                     captionOpacity: caption ? Number.parseFloat(getComputedStyle(caption).opacity) : 0,
                     buttonCount: el.querySelectorAll('button.gallery-trigger').length
@@ -246,11 +248,12 @@ def main() -> int:
                 if (
                     not item["caption"]
                     or not item["captionId"]
-                    or item["caption"] not in item["accessibleLabel"]
+                    or item["captionId"] not in item["labelledBy"]
+                    or item["caption"] != item["accessibleLabel"]
                     or item["captionOpacity"] < 0.95
                     or item["buttonCount"] != 1
                 ):
-                    failures.append(f"Gallery accessible label does not include visible caption: {item}")
+                    failures.append(f"Gallery accessible name does not exactly match visible caption: {item}")
 
             # Gallery: open by keyboard, navigate, close, and restore focus.
             first_gallery_item = page.locator(".gallery .gallery-trigger").first
