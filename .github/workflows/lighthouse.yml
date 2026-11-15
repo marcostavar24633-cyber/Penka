@@ -1,9 +1,7 @@
 name: PENKA Lighthouse audit
 
 on:
-  workflow_run:
-    workflows: ["PENKA quality checks"]
-    types: [completed]
+  push:
     branches: [main]
   workflow_dispatch:
 
@@ -12,21 +10,19 @@ permissions:
 
 # Keep only the newest audit when quality checks finish close together.
 concurrency:
-  group: penka-lighthouse-${{ github.event.workflow_run.head_branch || github.ref }}
+  group: penka-lighthouse-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   lighthouse:
     name: Audit published site
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
       - name: Wait for GitHub Pages publication
-        if: github.event_name == 'workflow_run'
-        run: sleep 60
+        run: sleep 90
       - name: Run Lighthouse on GitHub Pages
         uses: treosh/lighthouse-ci-action@v12
         with:
