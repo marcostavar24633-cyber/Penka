@@ -227,11 +227,12 @@ def main() -> int:
             except Exception:
                 failures.append("Theme toggle did not return to light theme")
 
-            # Gallery: visible captions must match the controls' accessible names.
+            # Gallery: native buttons use the exact visible caption as their accessible name.
             gallery_labels = page.locator(".gallery .g").evaluate_all(
                 """els => els.map(el => {
-                  const caption = el.querySelector('figcaption');
-                  const labelledBy = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                  const button = el.querySelector('.gallery-trigger');
+                  const caption = el.querySelector('.gallery-caption');
+                  const labelledBy = (button?.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
                   const referencedText = labelledBy.map(id => document.getElementById(id)?.textContent?.trim() || '').join(' ').trim();
                   return {
                     caption: caption?.textContent?.trim(),
@@ -239,7 +240,8 @@ def main() -> int:
                     labelledBy,
                     referencedText,
                     captionOpacity: caption ? Number.parseFloat(getComputedStyle(caption).opacity) : 0,
-                    imageAlt: el.querySelector('img')?.alt || ''
+                    imageAlt: button?.querySelector('img')?.alt || '',
+                    buttonCount: el.querySelectorAll('button.gallery-trigger').length
                   };
                 })"""
             )
@@ -250,14 +252,13 @@ def main() -> int:
                     or item["captionId"] not in item["labelledBy"]
                     or item["referencedText"] != item["caption"]
                     or item["captionOpacity"] < 0.95
-                    or item["imageAlt"].lower().find(item["caption"].lower()) < 0
+                    or item["buttonCount"] != 1
+                    or not item["imageAlt"]
                 ):
-                    failures.append(
-                        f"Gallery accessible name does not match visible caption: {item}"
-                    )
+                    failures.append(f"Gallery button accessible name does not match visible caption: {item}")
 
             # Gallery: open by keyboard, navigate, close, and restore focus.
-            first_gallery_item = page.locator(".gallery .g").first
+            first_gallery_item = page.locator(".gallery .gallery-trigger").first
             first_gallery_item.focus()
             page.keyboard.press("Enter")
             lightbox = page.locator(".lightbox")
@@ -280,7 +281,7 @@ def main() -> int:
             page.locator(".lightbox-close").click()
             if lightbox.evaluate("(el) => el.open"):
                 failures.append("Gallery close button did not dismiss the lightbox")
-            if page.evaluate("document.activeElement === document.querySelector('.gallery .g')") is False:
+            if page.evaluate("document.activeElement === document.querySelector('.gallery .gallery-trigger')") is False:
                 failures.append("Gallery did not restore focus to the activating item")
 
             print("PASS interactions: mobile navigation, menu tabs, theme toggle, gallery keyboard and button controls")
