@@ -45,3 +45,7 @@ GitHub Actions запускает статические проверки HTML �
 Проверки и отчёты: https://github.com/marcostavar24633-cyber/Penka/actions
 
 Запуск Lighthouse также доступен вручную через вкладку Actions.
+
+## Скриншоты для портфолио
+
+Реальные скриншоты сайта на desktop, tablet и mobile (полные страницы и первые экраны) доступны в [артефактах автоматической съёмки GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43698753330).
