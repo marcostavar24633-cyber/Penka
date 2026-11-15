@@ -238,7 +238,8 @@ def main() -> int:
                     captionId: caption?.id,
                     labelledBy,
                     referencedText,
-                    captionOpacity: caption ? Number.parseFloat(getComputedStyle(caption).opacity) : 0
+                    captionOpacity: caption ? Number.parseFloat(getComputedStyle(caption).opacity) : 0,
+                    imageAlt: el.querySelector('img')?.alt || ''
                   };
                 })"""
             )
@@ -249,6 +250,7 @@ def main() -> int:
                     or item["captionId"] not in item["labelledBy"]
                     or item["referencedText"] != item["caption"]
                     or item["captionOpacity"] < 0.95
+                    or item["imageAlt"].lower().find(item["caption"].lower()) < 0
                 ):
                     failures.append(
                         f"Gallery accessible name does not match visible caption: {item}"
