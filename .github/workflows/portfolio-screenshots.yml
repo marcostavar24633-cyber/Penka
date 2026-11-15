@@ -1,0 +1,38 @@
+name: PENKA portfolio screenshots
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    name: Capture published responsive layouts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Wait for GitHub Pages publication
+        run: sleep 90
+      - name: Capture desktop, tablet and mobile screenshots
+        run: python tools/capture_portfolio_screenshots.py
+      - name: Upload portfolio screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: penka-portfolio-screenshots
+          path: artifacts/portfolio/
+          if-no-files-found: error
+          retention-days: 30
