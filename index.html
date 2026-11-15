@@ -340,8 +340,10 @@ section{padding:clamp(72px,10vw,120px) 0}
 /* Gallery — Aceternity focus cards */
 .gallery{display:grid;grid-template-columns:1.1fr .9fr 1fr;grid-template-rows:300px 300px;gap:16px}
 .g{position:relative;border-radius:var(--radius);overflow:hidden;margin:0;transition:filter .35s,transform .35s,opacity .35s}
+.g .gallery-trigger{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:zoom-in}
+.g .gallery-trigger:focus-visible{outline:3px solid var(--terra);outline-offset:-4px}
 .g img{width:100%;height:100%;object-fit:cover}
-.g figcaption{position:absolute;left:14px;bottom:14px;padding:8px 14px;border-radius:9999px;background:var(--glass);border:1px solid color-mix(in srgb,var(--terra) 35%,transparent);color:var(--coffee);font-weight:600;font-size:13px;backdrop-filter:blur(6px);opacity:1;transform:none;transition:background .3s,border-color .3s}
+.g .gallery-caption{position:absolute;left:14px;bottom:14px;padding:8px 14px;border-radius:9999px;background:var(--glass);border:1px solid color-mix(in srgb,var(--terra) 35%,transparent);color:var(--coffee);font-weight:600;font-size:13px;backdrop-filter:blur(6px);opacity:1;transform:none;transition:background .3s,border-color .3s}
 .g:hover figcaption,.g:focus-within figcaption{background:var(--glass);border-color:color-mix(in srgb,var(--terra) 55%,transparent)}
 .gallery:hover .g:not(:hover){filter:blur(2px) saturate(.8);opacity:.8;transform:scale(.985)}
 .g1{grid-row:span 2}.g4{grid-column:2/4}
@@ -433,7 +435,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:15px;backg
   .dish .body{flex-direction:column;gap:6px;padding:14px}
   .dish h3{font-size:19px}.dish .desc{display:none}
   .gallery{grid-template-columns:1fr 1fr;grid-template-rows:200px 160px 160px;gap:10px}
-  .g figcaption{opacity:1;transform:none;font-size:12.5px;padding:6px 10px;left:8px;bottom:8px}
+  .g .gallery-caption{opacity:1;transform:none;font-size:12.5px;padding:6px 10px;left:8px;bottom:8px}
   .caption-line{grid-template-columns:1fr;gap:12px}
   .map{min-height:0}.map svg{min-height:280px}
   .foot{grid-template-columns:1fr}
@@ -510,7 +512,7 @@ section{padding-block:clamp(76px,9vw,132px)}
 #gallery{background:var(--milk)}
 .gallery{grid-template-columns:1.05fr .95fr 1fr;grid-template-rows:clamp(220px,27vw,390px) clamp(180px,19vw,270px);gap:12px}
 .g{border-radius:3px;cursor:zoom-in}
-.g figcaption{opacity:1;transform:none;border-radius:2px;background:rgba(20,42,33,.78);color:#fff;border:0;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.g .gallery-caption{opacity:1;transform:none;border-radius:2px;background:rgba(20,42,33,.78);color:#fff;border:0;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
 .gallery:hover .g:not(:hover){filter:none;opacity:1;transform:none}
 .gallery-hint{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:16px}
 #visit{background:var(--graphite);padding-block:clamp(68px,8vw,110px)}
@@ -668,7 +670,7 @@ section{padding-block:clamp(82px,9vw,132px)}
 .g{border-radius:16px;box-shadow:0 10px 28px rgba(24,42,32,.09)}
 .g img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .g:hover img{transform:scale(1.035)}
-.g figcaption{left:18px;bottom:18px;padding:10px 15px;border-radius:999px;background:rgba(17,39,29,.76);font-size:9px;letter-spacing:.15em}
+.g .gallery-caption{left:18px;bottom:18px;padding:10px 15px;border-radius:999px;background:rgba(17,39,29,.76);font-size:9px;letter-spacing:.15em}
 .caption-line{gap:24px;margin-top:36px}
 .caption-line div{border-top:1px solid #b69a62;padding-top:18px}
 .caption-line b{font-size:25px}
@@ -730,7 +732,7 @@ footer .disclaimer{font-size:11px;letter-spacing:.02em}
  .list{padding:22px}
  .gallery{grid-template-rows:220px 160px 160px;gap:9px}
  .g{border-radius:10px}
- .g figcaption{left:8px;bottom:8px;padding:7px 10px;font-size:8px}
+ .g .gallery-caption{left:8px;bottom:8px;padding:7px 10px;font-size:8px}
  .caption-line{gap:16px;margin-top:28px}
  .caption-line b{font-size:22px}
  .portfolio-grid{grid-template-columns:1fr}
@@ -1005,7 +1007,7 @@ section,.signature-strip,.penka-marquee,footer{min-width:0}
   .price{flex:none}
   .gallery{min-width:0}
   .g{min-width:0}
-  .g figcaption{max-width:calc(100% - 16px);white-space:normal;line-height:1.35}
+  .g .gallery-caption{max-width:calc(100% - 16px);white-space:normal;line-height:1.35}
   .caption-line>div{min-width:0}
   .visit-actions .btn{width:100%;min-width:0}
   .portfolio-card p,.portfolio-note,.disclaimer{overflow-wrap:anywhere}
@@ -1360,10 +1362,10 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
       <p data-fade>Подборка изображений для визуальной концепции кофейни.</p>
     </div>
     <div class="gallery" aria-label="Галерея фотографий ПЕНКА">
-      <figure class="g g1" data-fade role="button" aria-labelledby="gallery-caption-1" tabindex="0"><img src="img/penka-barista.webp" srcset="img/responsive/penka-barista-480.webp 480w, img/responsive/penka-barista-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Стойка бариста: бариста наливает молоко в капучино" loading="lazy" decoding="async" width="1100" height="900"><figcaption id="gallery-caption-1">Стойка бариста</figcaption></figure>
-      <figure class="g g2" data-fade role="button" aria-labelledby="gallery-caption-2" style="--d:.08s" tabindex="0"><img src="img/penka-dog.webp" srcset="img/responsive/penka-dog-480.webp 480w, img/responsive/penka-dog-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Сцена из кофейной жизни: визуальная концепция кофейни" loading="lazy" decoding="async" width="1100" height="900"><figcaption id="gallery-caption-2">Сцена из кофейной жизни</figcaption></figure>
-      <figure class="g g3" data-fade role="button" aria-labelledby="gallery-caption-3" style="--d:.16s" tabindex="0"><img decoding="async" src="img/penka-filter.webp" srcset="img/responsive/penka-filter-480.webp 480w, img/responsive/penka-filter-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Фильтр-кофе: чашка кофе на деревянном столе" loading="lazy"><figcaption id="gallery-caption-3">Фильтр-кофе</figcaption></figure>
-      <figure class="g g4" data-fade role="button" aria-labelledby="gallery-caption-4" style="--d:.24s" tabindex="0"><img decoding="async" src="img/penka-pastry.webp" srcset="img/responsive/penka-pastry-480.webp 480w, img/responsive/penka-pastry-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Утренняя витрина: десерт с ягодами на витрине кофейни" loading="lazy" style="object-position:center 60%"><figcaption id="gallery-caption-4">Утренняя витрина</figcaption></figure>
+      <figure class="g g1" data-fade><button type="button" class="gallery-trigger" aria-labelledby="gallery-caption-1"><img src="img/penka-barista.webp" srcset="img/responsive/penka-barista-480.webp 480w, img/responsive/penka-barista-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Бариста наливает молоко в капучино" loading="lazy" decoding="async" width="1100" height="900"><span class="gallery-caption" id="gallery-caption-1">Стойка бариста</span></button></figure>
+      <figure class="g g2" data-fade style="--d:.08s"><button type="button" class="gallery-trigger" aria-labelledby="gallery-caption-2"><img src="img/penka-dog.webp" srcset="img/responsive/penka-dog-480.webp 480w, img/responsive/penka-dog-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Визуальная концепция кофейни в сцене кофейной жизни" loading="lazy" decoding="async" width="1100" height="900"><span class="gallery-caption" id="gallery-caption-2">Сцена из кофейной жизни</span></button></figure>
+      <figure class="g g3" data-fade style="--d:.16s"><button type="button" class="gallery-trigger" aria-labelledby="gallery-caption-3"><img decoding="async" src="img/penka-filter.webp" srcset="img/responsive/penka-filter-480.webp 480w, img/responsive/penka-filter-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Чашка фильтр-кофе на деревянном столе" loading="lazy"><span class="gallery-caption" id="gallery-caption-3">Фильтр-кофе</span></button></figure>
+      <figure class="g g4" data-fade style="--d:.24s"><button type="button" class="gallery-trigger" aria-labelledby="gallery-caption-4"><img decoding="async" src="img/penka-pastry.webp" srcset="img/responsive/penka-pastry-480.webp 480w, img/responsive/penka-pastry-768.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 720px" alt="Десерт с ягодами на утренней витрине кофейни" loading="lazy" style="object-position:center 60%"><span class="gallery-caption" id="gallery-caption-4">Утренняя витрина</span></button></figure>
     </div>
     <p class="gallery-hint">Изображения открываются в полноэкранном просмотре</p>
     <div class="caption-line">
@@ -1558,7 +1560,7 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
 
 
   // Accessible full-screen gallery
-  const galleryItems=[...document.querySelectorAll('.gallery .g')];
+  const galleryItems=[...document.querySelectorAll('.gallery .gallery-trigger')];
   const lightbox=document.querySelector('.lightbox'), lightboxImage=lightbox.querySelector('.lightbox-image'), lightboxCaption=lightbox.querySelector('.lightbox-caption');
   const nativeDialog = typeof lightbox.showModal === 'function';
   let galleryIndex=0, galleryReturnFocus=null;
@@ -1566,7 +1568,7 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     galleryIndex=(index+galleryItems.length)%galleryItems.length;
     const figure=galleryItems[galleryIndex], img=figure.querySelector('img');
     lightboxImage.src=img.currentSrc||img.src; lightboxImage.alt=img.alt;
-    lightboxCaption.textContent=figure.querySelector('figcaption')?.textContent||img.alt;
+    lightboxCaption.textContent=figure.querySelector('.gallery-caption')?.textContent||img.alt;
   };
   const openGallery=(index)=>{
     galleryReturnFocus=document.activeElement;showGalleryImage(index);
@@ -1580,9 +1582,8 @@ footer .foot p,footer .disclaimer{color:#d5ddd4!important}
     if(typeof lightbox.close === 'function') lightbox.close();
     else { lightbox.removeAttribute('open'); lightbox.dispatchEvent(new Event('close')); }
   };
-  galleryItems.forEach((figure,index)=>{
-    figure.addEventListener('click',()=>openGallery(index));
-    figure.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGallery(index)}});
+  galleryItems.forEach((button,index)=>{
+    button.addEventListener('click',()=>openGallery(index));
   });
   lightbox.querySelector('.lightbox-close').addEventListener('click',closeGallery);
   lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>showGalleryImage(galleryIndex-1));
