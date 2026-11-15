@@ -25,8 +25,18 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Wait for GitHub Pages publication
-        run: sleep 90
+      - name: Verify GitHub Pages publication
+        run: |
+          for attempt in $(seq 1 12); do
+            if curl --fail --silent --show-error --output /dev/null https://marcostavar24633-cyber.github.io/Penka/; then
+              echo "Published PENKA site is reachable."
+              exit 0
+            fi
+            echo "Waiting for GitHub Pages (attempt $attempt/12)..."
+            sleep 5
+          done
+          echo "Published site did not become reachable in time."
+          exit 1
       - name: Capture desktop, tablet and mobile screenshots
         run: python tools/capture_portfolio_screenshots.py
       - name: Upload portfolio screenshots
