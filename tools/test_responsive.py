@@ -234,7 +234,7 @@ def main() -> int:
                   const caption = el.querySelector('.gallery-caption');
                   return {
                     caption: caption?.textContent?.trim(),
-                    buttonText: button?.innerText?.trim(),
+                    buttonText: button?.textContent?.trim(),
                     ariaLabel: button?.getAttribute('aria-label'),
                     ariaLabelledBy: button?.getAttribute('aria-labelledby'),
                     captionOpacity: caption ? Number.parseFloat(getComputedStyle(caption).opacity) : 0,
