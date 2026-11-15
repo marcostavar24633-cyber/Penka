@@ -93,7 +93,17 @@ PENKA — самостоятельная визуальная концепция
 - Корзина, оплата и оформление реального заказа не реализованы.
 - Конверсия, выручка и коммерческие результаты не заявляются.
 
-## 9. Итог
+## 10. Визуальная презентация
+
+Ниже — реальные скриншоты опубликованной версии сайта, полученные автоматизированным запуском Chromium. Для каждого устройства сохранены первый экран и полная высота страницы.
+
+| Desktop · 1440 px | Tablet · 768 px | Mobile · 390 px |
+|---|---|---|
+| ![Desktop hero](portfolio/screenshots/penka-desktop-hero.png) | ![Tablet hero](portfolio/screenshots/penka-tablet-hero.png) | ![Mobile hero](portfolio/screenshots/penka-mobile-hero.png) |
+
+Полные страницы: [desktop](portfolio/screenshots/penka-desktop-full.png) · [tablet](portfolio/screenshots/penka-tablet-full.png) · [mobile](portfolio/screenshots/penka-mobile-full.png).
+
+## 11. Итог
 
 PENKA демонстрирует полный цикл создания статического коммерческого интерфейса: от визуальной концепции и структуры пользовательских сценариев до адаптивной реализации, доступности, SEO-настроек, автоматических проверок и публикации.
 
