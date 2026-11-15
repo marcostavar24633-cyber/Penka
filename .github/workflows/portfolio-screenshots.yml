@@ -3,8 +3,11 @@ name: PENKA portfolio screenshots
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - ".github/portfolio/screenshots/**"
+    paths:
+      - "index.html"
+      - "img/**"
+      - "tools/capture_portfolio_screenshots.py"
+      - ".github/workflows/portfolio-screenshots.yml"
   workflow_dispatch:
 
 permissions:
