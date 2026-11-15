@@ -89,9 +89,9 @@ PENKA — визуальная концепция современной коф�
 
 | Desktop · 1440 px | Tablet · 768 px | Mobile · 390 px |
 |---|---|---|
-| ![Desktop hero](portfolio/screenshots/penka-desktop-hero.png) | ![Tablet hero](portfolio/screenshots/penka-tablet-hero.png) | ![Mobile hero](portfolio/screenshots/penka-mobile-hero.png) |
+| ![Desktop hero](../.github/portfolio/screenshots/penka-desktop-hero.png) | ![Tablet hero](../.github/portfolio/screenshots/penka-tablet-hero.png) | ![Mobile hero](../.github/portfolio/screenshots/penka-mobile-hero.png) |
 
-Полные страницы: [Desktop](portfolio/screenshots/penka-desktop-full.png) · [Tablet](portfolio/screenshots/penka-tablet-full.png) · [Mobile](portfolio/screenshots/penka-mobile-full.png).
+Полные страницы: [Desktop](../.github/portfolio/screenshots/penka-desktop-full.png) · [Tablet](../.github/portfolio/screenshots/penka-tablet-full.png) · [Mobile](../.github/portfolio/screenshots/penka-mobile-full.png).
 
 Скриншоты снимаются workflow [PENKA portfolio screenshots](https://github.com/marcostavar24633-cyber/Penka/actions/workflows/portfolio-screenshots.yml) и автоматически сохраняются в репозитории.
 
