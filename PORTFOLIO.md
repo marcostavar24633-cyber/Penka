@@ -67,6 +67,14 @@ PENKA — визуальная концепция современной коф�
 
 **[Скачать архив скриншотов в GitHub Actions](https://github.com/marcostavar24633-cyber/Penka/actions/runs/43698951727)** (артефакт хранится 30 дней с момента создания).
 
+## Скриншоты интерфейса
+
+Реальные кадры опубликованного сайта, снятые в Chromium при трёх размерах экрана. Полные версии страниц доступны в каталоге [portfolio/screenshots](portfolio/screenshots/).
+
+| Desktop · 1440 px | Tablet · 768 px | Mobile · 390 px |
+|---|---|---|
+| ![PENKA desktop](portfolio/screenshots/penka-desktop-hero.png) | ![PENKA tablet](portfolio/screenshots/penka-tablet-hero.png) | ![PENKA mobile](portfolio/screenshots/penka-mobile-hero.png) |
+
 ## Важно
 
 PENKA — вымышленная кофейня и демонстрационный проект. Название, меню и цены условные; фотографии созданы с помощью ИИ. Реального адреса, телефона, режима работы, отзывов, точки продаж, онлайн-заказа, конверсии и коммерческих результатов нет. Эти данные не следует представлять как факты о действующем бизнесе.
