@@ -64,7 +64,7 @@ jobs:
             git push
           fi
       - name: Upload portfolio screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: penka-portfolio-screenshots
           path: artifacts/portfolio/
