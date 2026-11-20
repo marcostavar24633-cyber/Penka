@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Wait for GitHub Pages publication
         run: sleep 90
       - name: Run Lighthouse on GitHub Pages
